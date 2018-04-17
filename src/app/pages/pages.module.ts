@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { APP_ROUTES_PAGES } from './pages.routes';
+import { PAGES_ROUTES } from './pages.routes';
+import { CategoriasComponent } from './categorias/categorias.component';
+import { PagesComponent } from './pages.component';
 
 @NgModule({
-   declarations:[
-       
-    PagenotfoundComponent,
-  
+   declarations: [
+     CategoriasComponent,
+     PagesComponent
    ],
-   exports:[
-    PagenotfoundComponent,
-    
-    
-   ]     
+   exports: [
+      CategoriasComponent,
+      PagesComponent
+   ],
+   imports: [
+        PAGES_ROUTES
+   ]
 
 
 })

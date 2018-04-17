@@ -1,13 +1,14 @@
 import { Routes, RouterModule } from '@angular/router';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { CategoriasComponent } from './categorias/categorias.component';
+import { PagesComponent } from './pages.component';
 
 
-
-
-
-const app_pages_routes:Routes = [
-    {path: '**', component:PagenotfoundComponent} 
+const app_pages_routes: Routes = [
+    {path: '', component: PagesComponent,
+      children: [
+        {path: 'categorias', component: CategoriasComponent} ]     
+    }
 ]; 
     
-export const APP_ROUTES_PAGES = RouterModule.forChild(app_pages_routes);    
+export const PAGES_ROUTES = RouterModule.forChild(app_pages_routes);    
 

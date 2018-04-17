@@ -6,15 +6,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { APP_ROUTES } from './app.routes';
 import { PagesModule } from './pages/pages.module';
-import { PagesComponent } from './pages/pages.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    PagesComponent,
+    PagenotfoundComponent,
     FooterComponent
   ],
   imports: [
