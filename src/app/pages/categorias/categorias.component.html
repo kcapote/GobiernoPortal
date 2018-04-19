@@ -1,40 +1,45 @@
 <h2>Categorías</h2>
 
+<hr>
+
+
+<div class="row ">
+    <div class="col-md-6 space-elements">
+        <div class="input-group">
+
+            <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" id="btnGroupAddon">Buscar</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 text-right space-elements">
+        <a [routerLink]="['/nuevaCategoria']" class="btn btn-outline-success">
+           Nueva categoría
+        </a>
+    </div>
+
+</div>
+
+
 <table class="table">
-    <thead class="bg-santander">
+    <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Opciones</th>
+            <th class="text-center" scope="col">Opciones</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Tibco</td>
-            <td>
+        <tr *ngFor="let c of cats; let i = index">
+            <th scope="row"> {{ i+1 }} </th>
+            <td>{{ c.name }}</td>
+            <td class="text-center">
                 <button class="btn btn-outline-info">Ver</button>
                 <button class="btn btn-outline-secondary">Editar</button>
                 <button class="btn btn-outline-danger">Eliminar</button>
             </td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>DataPower</td>
-            <td>
-                <button class="btn btn-outline-info">Ver</button>
-                <button class="btn btn-outline-secondary">Editar</button>
-                <button class="btn btn-outline-danger">Eliminar</button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>API</td>
-            <td>
-                <button class="btn btn-outline-info">Ver</button>
-                <button class="btn btn-outline-secondary">Editar</button>
-                <button class="btn btn-outline-danger">Eliminar</button>
-            </td>
-        </tr>
+
     </tbody>
 </table>
