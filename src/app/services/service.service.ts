@@ -19,13 +19,13 @@ export class ServiceService {
     return null;
   }
 
-  public saveObject(url: String, obj: any): Observable<any> {
-
-    let body = JSON.stringify(obj);
+  public saveObject(url: string, obj: any): Observable<any> {
+    
     let headers: HttpHeaders = new  HttpHeaders();
     headers.append('Content-Type', 'aplication/json');
-      
-    return this.http.post(Util.URL_CATEGORIAS, body, {headers});
+    
+ 
+    return this.http.post(url, obj, {headers});
     
 
   }

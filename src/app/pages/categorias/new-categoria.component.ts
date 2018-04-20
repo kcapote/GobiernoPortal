@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ServiceService } from '../../services/service.service';
+import { Categories } from '../../interfaces/categories.interface';
+import { Util } from '../../util/util';
 
 @Component({
   selector: 'app-new-categoria',
@@ -8,6 +10,7 @@ import { ServiceService } from '../../services/service.service';
   styles: []
 })
 export class NewCategoriaComponent implements OnInit {
+  title: string = ""
 
   constructor(private location: Location,
               private _s: ServiceService) { }
@@ -20,8 +23,18 @@ export class NewCategoriaComponent implements OnInit {
 
   }
 
-  save() {
-    
+  save(category:Categories) {
+      this._s.saveObject(Util.URL_CATEGORIAS, category).subscribe(
+          res => {
+            console.log(res)
+          },
+          error => {
+            console.log(error);
+            
+          }
+
+      )
+
   }
 
 

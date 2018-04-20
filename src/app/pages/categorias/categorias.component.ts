@@ -9,8 +9,8 @@ import { Categories } from '../../interfaces/categories.interface';
   styles: []
 })
 export class CategoriasComponent implements OnInit {
-    
-  cats: Categories[] = [];
+  title: string = "Categorías";  
+  collection: Categories[] = [];
   catTotal: number = 0;   
   pag: number = 0;
 
@@ -18,7 +18,7 @@ export class CategoriasComponent implements OnInit {
       _s.getObjects(Util.URL_CATEGORIAS).subscribe(
         res => {
           console.log(res);
-          this.cats = res.categories;
+          this.collection = res.categories;
           this.catTotal = res.totalRecords;
           this.pag = res.pagination;         
         }

@@ -14,12 +14,13 @@
         </div>
     </div>
     <div class="col-md-6 text-right space-elements">
-        <a [routerLink]="['/nuevaCategoria']" class="btn btn-outline-success">
-           Nueva categoría
+        <a [routerLink]="['/nuevoManual']" class="btn btn-outline-success">
+           Nuevo Manual
         </a>
     </div>
 
 </div>
+
 
 
 <table class="table">
@@ -27,6 +28,8 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
+            <th scope="col">Versión</th>
+            <th scope="col">Archivo</th>
             <th class="text-center" scope="col">Opciones</th>
         </tr>
     </thead>
@@ -34,6 +37,9 @@
         <tr *ngFor="let c of collection; let i = index">
             <th scope="row"> {{ i+1 }} </th>
             <td>{{ c.name }}</td>
+            <td>{{ c.version }}</td>
+            <td>{{ c.idFile }}</td>
+
             <td class="text-center">
                 <button class="btn btn-outline-info">Ver</button>
                 <button class="btn btn-outline-secondary">Editar</button>
