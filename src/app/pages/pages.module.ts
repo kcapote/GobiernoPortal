@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManualesComponent } from './manuales/manuales.component';
 import { FormManualComponent } from './manuales/form-manual.component';
 import { NewManualComponent } from './manuales/new-manual.component';
+import { ComboCategoriasComponent } from '../components/combo-categorias/combo-categorias.component';
 
 @NgModule({
    declarations: [
@@ -18,7 +19,8 @@ import { NewManualComponent } from './manuales/new-manual.component';
      FormCategoriaComponent,
      ManualesComponent,
      FormManualComponent,
-     NewManualComponent
+     NewManualComponent,
+     ComboCategoriasComponent
    ],
    exports: [
       CategoriasComponent,

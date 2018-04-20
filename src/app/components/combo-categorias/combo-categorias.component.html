@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label>Categorías</label>
+    <select class="form-control" [(ngModel)]="indexSel" (change)="updateItem()">
+      <option [value]="i" *ngFor="let c of collection; let i = index"   >
+        {{c.name}}
+      </option>
+    </select>
+</div>
