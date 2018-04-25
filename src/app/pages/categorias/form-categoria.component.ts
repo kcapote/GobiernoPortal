@@ -13,6 +13,8 @@ export class FormCategoriaComponent implements OnInit {
   // @Output('category') category: EventEmitter<Categories> = new EventEmitter();
   // @Output('valid') valid: EventEmitter<boolean> = new EventEmitter();
   @Input() title = "Titulo";
+  @Input() idCategory;
+
 
   private cat: Categories; 
   forma: FormGroup;

@@ -8,16 +8,13 @@
         <input class="form-control" formControlName="name" />
     </div>
 
-    <combo-categorias> </combo-categorias>
+    <combo-categorias #id name="category" formControlName="category"> </combo-categorias>
 
-    <div class="form-group">
-        <label>Versión:</label>
-        <input class="form-control" formControlName="version" />
-    </div>
+
 
     <div class="form-group">
         <label>Archivo:</label>
-        <input class="form-control" formControlName="linkFile" />
+        <input class="form-control" type="file" formControlName="linkFile" />
     </div>
 
     <div class="form-group">
@@ -25,4 +22,5 @@
         <textarea class="form-control" rows="3" formControlName="description"></textarea>
     </div>
 
+    {{forma.value | json }}
 </form>

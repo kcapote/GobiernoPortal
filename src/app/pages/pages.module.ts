@@ -10,6 +10,7 @@ import { ManualesComponent } from './manuales/manuales.component';
 import { FormManualComponent } from './manuales/form-manual.component';
 import { NewManualComponent } from './manuales/new-manual.component';
 import { ComboCategoriasComponent } from '../components/combo-categorias/combo-categorias.component';
+import { EditCategoryComponent } from './categorias/edit-category.component';
 
 @NgModule({
    declarations: [
@@ -20,6 +21,7 @@ import { ComboCategoriasComponent } from '../components/combo-categorias/combo-c
      ManualesComponent,
      FormManualComponent,
      NewManualComponent,
+     EditCategoryComponent,
      ComboCategoriasComponent
    ],
    exports: [

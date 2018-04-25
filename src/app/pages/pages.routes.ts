@@ -4,6 +4,7 @@ import { PagesComponent } from './pages.component';
 import { NewCategoriaComponent } from './categorias/new-categoria.component';
 import { ManualesComponent } from './manuales/manuales.component';
 import { NewManualComponent } from './manuales/new-manual.component';
+import { EditCategoryComponent } from './categorias/edit-category.component';
 
 
 const app_pages_routes: Routes = [
@@ -11,6 +12,7 @@ const app_pages_routes: Routes = [
       children: [
         {path: 'categorias', component: CategoriasComponent}, 
         {path: 'nuevaCategoria', component: NewCategoriaComponent},
+        {path: 'editCategory', component: EditCategoryComponent},
         {path: 'manuales', component: ManualesComponent},
         {path: 'nuevoManual', component: NewManualComponent}
         

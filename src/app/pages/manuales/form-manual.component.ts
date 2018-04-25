@@ -11,7 +11,7 @@ export class FormManualComponent implements OnInit {
 
   @Input() title = "Titulo";
   forma: FormGroup;
-  
+
   constructor() { }
 
 
@@ -20,7 +20,7 @@ export class FormManualComponent implements OnInit {
     this.forma = new FormGroup({
       'name': new FormControl('', Validators.required),
       'description': new FormControl('', Validators.required),
-      'version': new FormControl('', Validators.required),
+      'category': new FormControl(''),
       'linkFile': new FormControl('')
 
     }

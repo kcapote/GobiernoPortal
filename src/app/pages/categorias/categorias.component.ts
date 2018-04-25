@@ -21,10 +21,14 @@ export class CategoriasComponent implements OnInit {
           this.collection = res.categories;
           this.catTotal = res.totalRecords;
           this.pag = res.pagination;         
+        },
+        error => {
+          console.log(error);
+          
         }
       );
         
-  }
+  } //600 600 3600
 
   ngOnInit() {
   }
