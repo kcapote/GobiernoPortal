@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     PagenotfoundComponent,
     FooterComponent
     
+    
   ],
   imports: [
     BrowserModule,

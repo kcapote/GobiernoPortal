@@ -11,6 +11,9 @@ import { FormManualComponent } from './manuales/form-manual.component';
 import { NewManualComponent } from './manuales/new-manual.component';
 import { ComboCategoriasComponent } from '../components/combo-categorias/combo-categorias.component';
 import { EditCategoryComponent } from './categorias/edit-category.component';
+import { EditManualComponent } from './manuales/edit-manual.component';
+import { MsgBoxComponent } from '../components/msg-box/msg-box.component';
+import { NormasComponent } from './normas/normas.component';
 
 @NgModule({
    declarations: [
@@ -22,7 +25,11 @@ import { EditCategoryComponent } from './categorias/edit-category.component';
      FormManualComponent,
      NewManualComponent,
      EditCategoryComponent,
-     ComboCategoriasComponent
+     ComboCategoriasComponent,
+     EditManualComponent,
+     MsgBoxComponent,
+     NormasComponent
+
    ],
    exports: [
       CategoriasComponent,

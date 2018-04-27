@@ -5,6 +5,8 @@ import { NewCategoriaComponent } from './categorias/new-categoria.component';
 import { ManualesComponent } from './manuales/manuales.component';
 import { NewManualComponent } from './manuales/new-manual.component';
 import { EditCategoryComponent } from './categorias/edit-category.component';
+import { EditManualComponent } from './manuales/edit-manual.component';
+import { NormasComponent } from './normas/normas.component';
 
 
 const app_pages_routes: Routes = [
@@ -14,7 +16,9 @@ const app_pages_routes: Routes = [
         {path: 'nuevaCategoria', component: NewCategoriaComponent},
         {path: 'editCategory', component: EditCategoryComponent},
         {path: 'manuales', component: ManualesComponent},
-        {path: 'nuevoManual', component: NewManualComponent}
+        {path: 'nuevoManual', component: NewManualComponent},
+        {path: 'editarManual/:id', component: EditManualComponent},
+        {path: 'normas', component: NormasComponent}
         
       ]     
     }

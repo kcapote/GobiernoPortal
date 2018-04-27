@@ -1,7 +1,7 @@
 import { Categories } from './categories.interface';
 
 
-export interface Manual {
+export interface Norma {
     _id?: string; 
     name: string;
     description: string;

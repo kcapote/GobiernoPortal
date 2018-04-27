@@ -1,0 +1,11 @@
+<app-form-manual #form title="Editar Manual" [idManual]="idManual">
+</app-form-manual>
+<div>
+    <button (click)="save(form.getObject())" [disabled]="!form.isValid()" class="btn btn-outline-primary">
+        Guardar
+    </button>
+
+    <button (click)="back()" class="btn btn-outline-secondary">
+        Regresar
+    </button>
+</div>

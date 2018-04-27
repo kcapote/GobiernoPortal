@@ -48,8 +48,8 @@ export class ComboCategoriasComponent implements OnInit, ControlValueAccessor  {
   }
 
   ngOnInit() {
-    console.log('El index es',this.indexSel,' el item es', this.item.name );
-    this.updateItem();
+
+
   }
 
 

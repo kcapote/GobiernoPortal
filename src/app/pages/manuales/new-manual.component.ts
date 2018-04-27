@@ -24,6 +24,7 @@ export class NewManualComponent implements OnInit {
   }
 
   save(obj:Manual) {
+ 
       this._s.saveObject(Util.URL_MANUAL, obj).subscribe(
           res => {
             console.log(res)

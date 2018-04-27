@@ -11,19 +11,21 @@ import { Util } from '../../util/util';
 export class ManualesComponent implements OnInit {
 
   title: string = "Manuales"; 
-  collection: Manual[] = [];
+  collection: Manual[];
 
   
 
-  constructor(private _s: ServiceService) { 
+  constructor(private _s: ServiceService) {
+    this.collection = []; 
     _s.getObjects(Util.URL_MANUAL).subscribe(
         res =>{
+
           this.collection = res.manuals;
-          console.log(this.collection);
+        
           
         }
 
-    );
+    ); 
 
   }
 

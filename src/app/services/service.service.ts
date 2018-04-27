@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Util } from '../util/util';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ServiceService {
@@ -11,12 +12,15 @@ export class ServiceService {
 
 
   public getObjects(url: string): Observable<any> {
-        return this.http.get(url);                
+        console.log(url);
+        
+        return this.http.get(url);
   }
 
   public getObject(url: string, id: string): Observable<any> {
-
-    return null;
+     let urlTemp = `${ url }/${ id }`;   
+    
+    return this.http.get(urlTemp);
   }
 
   public saveObject(url: string, obj: any): Observable<any> {
