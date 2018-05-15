@@ -3,6 +3,8 @@ import { Manual } from '../../interfaces/manual.interface';
 import { Util } from '../../util/util';
 import { ServiceService } from '../../services/service.service';
 import { Location } from '@angular/common';
+import { MsgBoxService } from '../../components/msg-box/msg-box.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-manual',
@@ -12,8 +14,10 @@ import { Location } from '@angular/common';
 export class NewManualComponent implements OnInit {
 
   constructor(private location: Location,
-              private _s: ServiceService) { }
-
+              private _s: ServiceService,
+              private _msg: MsgBoxService,
+              private router: Router) { }
+ 
   ngOnInit() {
   }
 
@@ -27,7 +31,12 @@ export class NewManualComponent implements OnInit {
  
       this._s.saveObject(Util.URL_MANUAL, obj).subscribe(
           res => {
-            console.log(res)
+            this._msg.show(Util.SAVE_TITLE,Util.MSJ_SAVE_SUCCESS,Util.ACTION_SUCCESS).subscribe(
+              res => {
+                this.router.navigate(['/manuales']);    
+              }              
+            );
+            
           },
           error => {
             console.log(error);

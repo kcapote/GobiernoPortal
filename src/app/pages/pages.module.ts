@@ -14,6 +14,7 @@ import { EditCategoryComponent } from './categorias/edit-category.component';
 import { EditManualComponent } from './manuales/edit-manual.component';
 import { MsgBoxComponent } from '../components/msg-box/msg-box.component';
 import { NormasComponent } from './normas/normas.component';
+import { MsgBoxService } from '../components/msg-box/msg-box.service';
 
 @NgModule({
    declarations: [
@@ -40,6 +41,9 @@ import { NormasComponent } from './normas/normas.component';
      PAGES_ROUTES,
      FormsModule, 
      ReactiveFormsModule
+   ], 
+   providers: [
+     MsgBoxService
    ]
 
 

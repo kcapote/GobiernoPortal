@@ -1,22 +1,90 @@
-<div class="fondo-negro" [ngClass]="oculto">
-    <div class="modal" style="display: block" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" (click)="oculto='oculto'" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-                </div>
-                <div class="modal-body">
-                    <p>Modal body text goes here.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-secondary" (click)="oculto='oculto'">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
+
+<div class="modal-background " [ngClass]="_msg.hideModal ">
+  <div class="modal animated  bounceInDown"  style="display: block" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><span><strong> {{ _msg.title }} </strong>  </span></h5>
+          <button (click)="_msg.hide()" type="button" class="close"  aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- Question option -->
+        <div *ngIf="_msg.typeModal == _msg.questionAction" >
+          <div class="text-center space-elements">
+            <i class="fas fa-question-circle text-primary" style="font-size:64px "></i>    
+          </div>
+          <div class="modal-body text-center">
+              <p>{{ _msg.message }} </p>             
+          </div>
+          <div class="modal-footer"> 
+            <button (click)="_msg.sendResponse()" type="button" class="btn btn-primary">Si</button>
+            <button (click)="_msg.hide()" type="button" class="btn btn-secondary">Cancelar</button>
+          </div>
+        </div>
+
+         
+        <!-- Info option -->
+        <div *ngIf="_msg.typeModal == _msg.infoAction ">
+          <div class="text-center space-elements">
+            <i class="fas fa-info-circle text-info" style="font-size:64px"></i>    
+          </div>
+          <div class="modal-body text-center">
+              <p>{{ _msg.message }} </p>             
+          </div>
+          <div class="modal-footer"> 
+            <button (click)="_msg.hide()" type="button" class="btn btn-info">OK</button>
+          </div>
+        </div>
+
+
+        <!-- Success option -->
+        <div *ngIf="_msg.typeModal == _msg.successAction ">
+
+          <div  class="text-center space-elements">
+            <i class="fas fa-check-circle text-success" style="font-size:64px"></i>    
+          </div>
+          <div class="modal-body text-center">
+              <p>{{ _msg.message }} </p>             
+          </div>          
+          <div class="modal-footer" > 
+            <button (click)="_msg.sendResponse()" type="button" class="btn btn-success">OK</button>
+          </div>
+                    
+        </div> 
+        
+        <!-- Delete option -->
+        <div *ngIf="_msg.typeModal == _msg.deleteAction" >
+          <div class="text-center space-elements">
+            <i class="fas fa-question-circle text-danger" style="font-size:64px "></i>    
+          </div>
+          <div class="modal-body text-center">
+              <p>{{ _msg.message }} </p>             
+          </div>
+          <div class="modal-footer"> 
+            <button (click)="_msg.sendResponse()" type="button" class="btn btn-danger">Si</button>
+            <button (click)="_msg.hide()" type="button" class="btn btn-secondary">Cancelar</button>
+          </div>
+        </div>
+
+
+        <!-- Update option -->
+        <div *ngIf="_msg.typeModal == _msg.updateAccion" >
+            <div class="text-center space-elements">
+              <i class="fas fa-question-circle text-warning" style="font-size:64px "></i>    
+            </div>
+            <div class="modal-body text-center">
+                <p>{{ _msg.message }} </p>             
+            </div>
+            <div class="modal-footer"> 
+              <button (click)="_msg.sendResponse()" type="button" class="btn btn-warning">Si</button>
+              <button (click)="_msg.hide()" type="button" class="btn btn-secondary">Cancelar</button>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
 </div>

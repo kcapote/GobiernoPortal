@@ -3,17 +3,21 @@ import { Location } from '@angular/common';
 import { ServiceService } from '../../services/service.service';
 import { Categories } from '../../interfaces/categories.interface';
 import { Util } from '../../util/util';
+import { MsgBoxService } from '../../components/msg-box/msg-box.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-categoria',
   templateUrl: './new-categoria.component.html',
   styles: []
-})
+}) 
 export class NewCategoriaComponent implements OnInit {
   title: string = ""
 
   constructor(private location: Location,
-              private _s: ServiceService) { }
+              private _s: ServiceService,
+              private _msg: MsgBoxService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -26,7 +30,9 @@ export class NewCategoriaComponent implements OnInit {
   save(category:Categories) {
       this._s.saveObject(Util.URL_CATEGORIAS, category).subscribe(
           res => {
-            console.log(res)
+            this._msg.show('',Util.MSJ_SAVE_SUCCESS,Util.ACTION_SUCCESS).subscribe(
+              res => this.router.navigate(['/categorias'])
+            );         
           },
           error => {
             console.log(error);

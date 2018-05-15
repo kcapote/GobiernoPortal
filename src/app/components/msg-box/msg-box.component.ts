@@ -1,22 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { MsgBoxService } from './msg-box.service';
 
 @Component({
-  selector: 'app-msg-box',
+  selector: 'msg-box',
   templateUrl: './msg-box.component.html',
   styles: []
 })
 export class MsgBoxComponent implements OnInit {
+  
 
-  oculto: string ='';
 
-  constructor() { 
-    console.log('modal listo');
-    
-  }
+  
+  
+  constructor(public _msg: MsgBoxService ) {
+
+
+   }
+  
+
 
   ngOnInit() {
   }
-
-  
 
 }
