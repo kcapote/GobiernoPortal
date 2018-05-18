@@ -1,4 +1,4 @@
-<app-form-categoria #form title="Editar Categoría">
+<app-form-categoria #form title="Editar Categoría" [idCategory]="idCategory">
 </app-form-categoria>
 <div>
     <button (click)="save(form.getCategory())" [disabled]="!form.isValid()" class="btn btn-outline-primary">

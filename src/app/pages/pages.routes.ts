@@ -14,7 +14,7 @@ const app_pages_routes: Routes = [
       children: [
         {path: 'categorias', component: CategoriasComponent}, 
         {path: 'nuevaCategoria', component: NewCategoriaComponent},
-        {path: 'editCategory', component: EditCategoryComponent},
+        {path: 'editCategoria/:id', component: EditCategoryComponent},
         {path: 'manuales', component: ManualesComponent},
         {path: 'nuevoManual', component: NewManualComponent},
         {path: 'editarManual/:id', component: EditManualComponent},

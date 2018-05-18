@@ -45,7 +45,7 @@ save(obj: Manual) {
   this._msg.show(Util.UPDATE_TITLE, Util.MSJ_UPDATE_QUESTION,Util.ACTION_UPDATE).subscribe(
     res => {
       if(res.response == Util.OK_RESPONSE){
-        this._s.saveObject(Util.URL_MANUAL, obj).subscribe(
+        this._s.updateObject(Util.URL_MANUAL, obj).subscribe(
           res => {
            this._msg.show('',Util.MSJ_UPDATE_SUCCESS,Util.ACTION_SUCCESS).subscribe(
              res => this.router.navigate(['/manuales'])

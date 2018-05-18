@@ -10,6 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { ServiceService } from './services/service.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MsgBoxService } from './components/msg-box/msg-box.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     PagesModule,
     HttpClientModule
   ],
-  providers: [ServiceService],
+  providers: [ServiceService, MsgBoxService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

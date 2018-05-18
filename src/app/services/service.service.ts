@@ -12,15 +12,14 @@ export class ServiceService {
 
 
   public getObjects(url: string): Observable<any> {
-        console.log(url);
-        
+ 
         return this.http.get(url);
-  }
+  } 
 
   public getObject(url: string, id: string): Observable<any> {
      let urlTemp = `${ url }/${ id }`;   
     
-    return this.http.get(urlTemp);
+    return  this.http.get(urlTemp);
   }
 
   public saveObject(url: string, obj: any): Observable<any> {
@@ -28,10 +27,24 @@ export class ServiceService {
     let headers: HttpHeaders = new  HttpHeaders();
     headers.append('Content-Type', 'aplication/json');
     
- 
-    return this.http.post(url, obj, {headers});
-    
+    return this.http.post(url, obj, {headers});    
 
+  }
+
+  public updateObject(url: string, obj: any): Observable<any> {
+    let urlTemp = `${ url }/${ obj['_id'] }`;
+    let headers: HttpHeaders = new  HttpHeaders();
+    headers.append('Content-Type', 'aplication/json');
+    
+    return this.http.put(urlTemp, obj, {headers});    
+
+  }
+  
+  public deleteObject(url:string, id:string ): Observable<any> {
+
+    let urlTemp = `${ url }/${ id }`;    
+    return this.http.delete(urlTemp);
+    
   }
 
 

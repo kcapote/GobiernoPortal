@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter, OnChanges, SimpleChanges, Inpu
 import { Categories } from '../../interfaces/categories.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { ServiceService } from '../../services/service.service';
+import { Util } from '../../util/util';
 
 @Component({
   selector: 'app-form-categoria',
@@ -15,11 +17,10 @@ export class FormCategoriaComponent implements OnInit {
   @Input() title = "Titulo";
   @Input() idCategory;
 
-
-  private cat: Categories; 
+  cat: Categories; 
   forma: FormGroup;
 
-  constructor() { }
+  constructor(private _s: ServiceService) { }
 
   
   ngOnInit() {
@@ -29,6 +30,22 @@ export class FormCategoriaComponent implements OnInit {
       }
     );
 
+    if(this.idCategory){
+      this._s.getObject(Util.URL_CATEGORIAS,this.idCategory).subscribe(
+        res => {
+          this.cat = res.category;
+          console.log(res);
+          this.forma.setValue(
+            {
+               name: this.cat.name,
+               description: this.cat.description                 
+            }
+          )
+            
+        }
+      );
+    }
+
   }
 
   isValid():boolean{
@@ -37,7 +54,9 @@ export class FormCategoriaComponent implements OnInit {
   }
 
   getCategory():Categories{
-    return this.forma.value;
+    this.cat = this.forma.value;
+    this.cat._id = this.idCategory;
+    return this.cat;
 
   }
 

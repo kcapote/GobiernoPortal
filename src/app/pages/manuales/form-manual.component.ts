@@ -14,7 +14,8 @@ export class FormManualComponent implements OnInit, AfterViewInit {
   @Input() title = "Titulo";
   @Input() idManual;
   forma: FormGroup;
-
+  url = Util.URL_CATEGORIAS;
+  manual: Manual;
   constructor(private _ps: ServiceService) { }
 
 
@@ -37,7 +38,9 @@ export class FormManualComponent implements OnInit, AfterViewInit {
   }
 
   getObject():Manual {
-    return this.forma.value;
+    this.manual = this.forma.value; 
+    this.manual._id = this.idManual;
+    return this.manual;
 
   }
 
@@ -55,7 +58,7 @@ export class FormManualComponent implements OnInit, AfterViewInit {
             description: r.description, 
             category: r.category,
             linkFile: r.linkFile
-
+            
           })
          }
       )  

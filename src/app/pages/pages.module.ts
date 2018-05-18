@@ -15,6 +15,7 @@ import { EditManualComponent } from './manuales/edit-manual.component';
 import { MsgBoxComponent } from '../components/msg-box/msg-box.component';
 import { NormasComponent } from './normas/normas.component';
 import { MsgBoxService } from '../components/msg-box/msg-box.service';
+import { ComboComponent } from '../components/combo/combo.component';
 
 @NgModule({
    declarations: [
@@ -29,7 +30,8 @@ import { MsgBoxService } from '../components/msg-box/msg-box.service';
      ComboCategoriasComponent,
      EditManualComponent,
      MsgBoxComponent,
-     NormasComponent
+     NormasComponent,
+     ComboComponent
 
    ],
    exports: [

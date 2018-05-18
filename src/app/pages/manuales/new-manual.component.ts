@@ -28,7 +28,8 @@ export class NewManualComponent implements OnInit {
   }
 
   save(obj:Manual) {
- 
+     console.log(obj);
+     obj['version'] ="1"
       this._s.saveObject(Util.URL_MANUAL, obj).subscribe(
           res => {
             this._msg.show(Util.SAVE_TITLE,Util.MSJ_SAVE_SUCCESS,Util.ACTION_SUCCESS).subscribe(
