@@ -7,6 +7,10 @@ import { NewManualComponent } from './manuales/new-manual.component';
 import { EditCategoryComponent } from './categorias/edit-category.component';
 import { EditManualComponent } from './manuales/edit-manual.component';
 import { NormasComponent } from './normas/normas.component';
+import { NewNormaComponent } from './normas/new-norma.component';
+import { EditNormaComponent } from './normas/edit-norma.component';
+import { HomeComponent } from './home/home.component';
+import { CatologoComponent } from './catologo/catologo.component';
 
 
 const app_pages_routes: Routes = [
@@ -18,7 +22,11 @@ const app_pages_routes: Routes = [
         {path: 'manuales', component: ManualesComponent},
         {path: 'nuevoManual', component: NewManualComponent},
         {path: 'editarManual/:id', component: EditManualComponent},
-        {path: 'normas', component: NormasComponent}
+        {path: 'editarNorma/:id', component: EditNormaComponent},
+        {path: 'normas', component: NormasComponent},
+        {path: 'nuevaNorma', component: NewNormaComponent},
+        {path: 'home', component: HomeComponent},
+        {path: 'catalogo', component: CatologoComponent }
         
       ]     
     }

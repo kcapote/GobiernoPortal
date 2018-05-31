@@ -11,10 +11,23 @@ export class ServiceService {
   constructor(public http: HttpClient) { }
 
 
-  public getObjects(url: string): Observable<any> {
+  /*public getObjects(url: string): Observable<any> {
  
         return this.http.get(url);
-  } 
+  } */
+
+  public getObjects(url: string, pagination: number = 0 ,term?: string): Observable<any> {
+    let urlTemp;
+     
+    if(term) {
+      urlTemp = `${url}/search/${ term }/?pagination=${ pagination }`;
+    } else {
+      urlTemp = `${url}/?pagination=${ pagination }`;
+    }
+    
+    return this.http.get( urlTemp );                
+  }
+
 
   public getObject(url: string, id: string): Observable<any> {
      let urlTemp = `${ url }/${ id }`;   

@@ -1,0 +1,11 @@
+<app-form-norma #form title="Nueva Norma"></app-form-norma>
+
+<div>
+    <button (click)="save(form.getObject())" [disabled]="!form.isValid()" class="btn btn-outline-primary">
+        Guardar
+    </button>
+
+    <button (click)="back()" class="btn btn-outline-secondary">
+        Regresar
+    </button>
+</div>

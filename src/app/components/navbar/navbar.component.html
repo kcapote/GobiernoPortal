@@ -1,5 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Gobierno</a>
+    <a class="navbar-brand" [routerLink]="['/home']">
+        <img src="../assets/img/LOGO_ITG.png" width="125px" height="75px" alt="">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,7 +14,7 @@
                 <a class="nav-link" [routerLink]="['/normas']">Normas</a>
             </li>
             <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" href="#">Catalogos</a>
+                <a class="nav-link" [routerLink]="['/catalogo']">Catalogos</a>
             </li>
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" [routerLink]="['/manuales']">Manuales</a>

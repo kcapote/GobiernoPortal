@@ -16,6 +16,12 @@ import { MsgBoxComponent } from '../components/msg-box/msg-box.component';
 import { NormasComponent } from './normas/normas.component';
 import { MsgBoxService } from '../components/msg-box/msg-box.service';
 import { ComboComponent } from '../components/combo/combo.component';
+import { NewNormaComponent } from './normas/new-norma.component';
+import { FormNormaComponent } from './normas/form-norma.component';
+import { EditNormaComponent } from './normas/edit-norma.component';
+import { HomeComponent } from './home/home.component';
+import { CatologoComponent } from './catologo/catologo.component';
+
 
 @NgModule({
    declarations: [
@@ -31,7 +37,12 @@ import { ComboComponent } from '../components/combo/combo.component';
      EditManualComponent,
      MsgBoxComponent,
      NormasComponent,
-     ComboComponent
+     ComboComponent,
+     NewNormaComponent,
+     EditNormaComponent,
+     FormNormaComponent,
+     HomeComponent,
+     CatologoComponent
 
    ],
    exports: [

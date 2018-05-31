@@ -9,11 +9,13 @@ import { MsgBoxService } from '../../components/msg-box/msg-box.service';
   templateUrl: './categorias.component.html',
   styles: []
 })
+
 export class CategoriasComponent implements OnInit {
   title: string = "Categorías";  
   collection: Categories[] = [];
   catTotal: number = 0;   
- 
+  term: string;
+  totalRecords: number;  
 
   constructor(public _s: ServiceService,
               private _msg: MsgBoxService ) { 
@@ -40,7 +42,23 @@ export class CategoriasComponent implements OnInit {
     this.prueba ('localhost','hola','como');
   }  
 
-
+  search() {
+    if(this.term.length>0){
+       this._s.getObjects(Util.URL_CATEGORIAS,0 ,this.term ).subscribe(
+           res => {
+               this.collection = res.categories;
+               this.totalRecords = res.totalRecords;
+           }   
+       )       
+   }else{
+       this._s.getObjects(Util.URL_CATEGORIAS).subscribe(
+           res => {
+              this.collection = res.categories;
+              this.totalRecords = res.totalRecords;
+           }
+       );
+   } 
+   } 
   
 
   prueba (url, ...hla ) {

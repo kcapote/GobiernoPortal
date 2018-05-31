@@ -12,13 +12,13 @@ import { ServiceService } from './services/service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MsgBoxService } from './components/msg-box/msg-box.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     PagenotfoundComponent,
-    FooterComponent
-    
+    FooterComponent,
     
   ],
   imports: [

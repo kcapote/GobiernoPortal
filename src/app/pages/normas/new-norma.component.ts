@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Manual } from '../../interfaces/manual.interface';
-import { Util } from '../../util/util';
+import { Norma } from '../../interfaces/norma.interface';
+import { Router } from '@angular/router';
+import { MsgBoxService } from '../../components/msg-box/msg-box.service';
 import { ServiceService } from '../../services/service.service';
 import { Location } from '@angular/common';
-import { MsgBoxService } from '../../components/msg-box/msg-box.service';
-import { Router } from '@angular/router';
+import { Util } from '../../util/util';
 
 @Component({
-  selector: 'app-new-manual',
-  templateUrl: './new-manual.component.html',
+  selector: 'app-new-norma',
+  templateUrl: './new-norma.component.html',
   styles: []
 })
-export class NewManualComponent implements OnInit {
+export class NewNormaComponent implements OnInit {
 
   constructor(private location: Location,
-              private _s: ServiceService,
-              private _msg: MsgBoxService,
-              private router: Router) { }
- 
+    private _s: ServiceService,
+    private _msg: MsgBoxService,
+    private router: Router) { }
+
   ngOnInit() {
   }
 
@@ -27,14 +27,14 @@ export class NewManualComponent implements OnInit {
 
   }
 
-  save(obj:Manual) {
+  save(obj:Norma) {
      console.log(obj);
      obj['version'] =1
-      this._s.saveObject(Util.URL_MANUAL, obj).subscribe(
+      this._s.saveObject(Util.URL_NORMA, obj).subscribe(
           res => {
             this._msg.show(Util.SAVE_TITLE,Util.MSJ_SAVE_SUCCESS,Util.ACTION_SUCCESS).subscribe(
               res => {
-                this.router.navigate(['/manuales']);    
+                this.router.navigate(['/normas']);    
               }              
             );
             
@@ -47,5 +47,4 @@ export class NewManualComponent implements OnInit {
       )
 
   }
-
 }

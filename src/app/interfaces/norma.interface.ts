@@ -9,5 +9,6 @@ export interface Norma {
     linkFile?: string;
     idFile?: string;
     __v: number;
+    version: number;
 
 } 
