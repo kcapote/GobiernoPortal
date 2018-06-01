@@ -11,7 +11,7 @@ import { MsgBoxService } from '../../components/msg-box/msg-box.service';
 })
 export class NormasComponent implements OnInit {
   
-    title:string = "Normas";
+    title:string = "Documentos y Normas";
     collection: Norma[];
     term: string;
     totalRecords: number; 

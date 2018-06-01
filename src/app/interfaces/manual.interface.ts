@@ -7,9 +7,9 @@ export interface Manual {
     description: string;
     category: any;
     linkFile?: string;
-    file?: string;
+    idFile?: string;
     __v: number;
-    version:number;
+    version: number;
 
 
 } 
