@@ -16,7 +16,7 @@
 
     <div class="form-group">
         <label>Archivo:</label>
-        <input class="form-control" #ff type="file" formControlName="linkFile" />
+        <input class="form-control" #ff type="file" formControlName="linkFile" (change)="registerFiles($event)" />
 
     </div>
 
@@ -25,5 +25,6 @@
         <textarea class="form-control" rows="3" formControlName="description"></textarea>
     </div>
 
+    <button (click)="getObject()"> ver objeto </button>
 
 </form>

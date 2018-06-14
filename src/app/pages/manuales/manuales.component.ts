@@ -3,6 +3,7 @@ import { Manual } from '../../interfaces/manual.interface';
 import { ServiceService } from '../../services/service.service';
 import { Util } from '../../util/util';
 import { MsgBoxService } from '../../components/msg-box/msg-box.service';
+import 'rxjs/Rx' ;
 
 @Component({
   selector: 'app-manuales',
@@ -24,7 +25,8 @@ export class ManualesComponent implements OnInit {
         res =>{
 
           this.collection = res.manuals;
-        
+          console.log(this.collection);
+          
           
         }
 
@@ -48,6 +50,32 @@ export class ManualesComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  download(idx: number) {
+
+  //  let file: File = new File(this.collection[idx].file.data ,'holamundo');
+  //  let blob = new Blob([new Uint8Array(this.collection[idx].file.data)]);
+  //  let url= window.URL.createObjectURL(blob);
+   
+   
+  //  window.open(url);
+
+   
+   //var blob = new Blob([data], { type: 'text/csv' });
+
+
+   var blob = new Blob([this.collection[idx].file.data], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+   var file = new File([this.collection[idx].file.data],'hola',{
+     type:  'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+   });
+   
+
+   var url= window.URL.createObjectURL(file);
+   console.log(url);
+   
+   window.open(url);
+   
+  } 
   
   search() {
     if(this.term.length>0){

@@ -7,7 +7,7 @@ export interface Manual {
     description: string;
     category: any;
     linkFile?: string;
-    idFile?: string;
+    file?: any;
     __v: number;
     version: number;
 
