@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="col-md-6 text-right space-elements">
-        <a [routerLink]="['/nuevaCategoria']" class="btn btn-outline-success">
+        <a [routerLink]="['/nuevaCategoria']" class="btn btn-success">
            Nueva categoría
         </a>
     </div>
@@ -35,11 +35,11 @@
             <th scope="row"> {{ i+1 }} </th>
             <td>{{ c.name }}</td>
             <td class="text-center">
-                <button class="btn btn-outline-info"><i class="fas fa-eye"></i></button>
-                <a class="btn btn-outline-secondary" [routerLink]="[ '/editCategoria', c._id ]"><i class="fas fa-edit"></i></a>
-                <button class="btn btn-outline-danger" (click)="delete(i)"> <i class="far fa-trash-alt"></i> </button>
+                <button class="btn btn-secondary"><i class="fas fa-eye"></i></button>
+                <a class="btn btn-secondary" [routerLink]="[ '/editCategoria', c._id ]"><i class="fas fa-edit"></i></a>
+                <button class="btn btn-secondary" (click)="delete(i)"> <i class="far fa-trash-alt"></i> </button>
             </td>
         </tr>
 
-    </tbody>
+    </tbody> 
 </table>

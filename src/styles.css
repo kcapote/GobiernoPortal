@@ -1,5 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-
+.backgroundMain{
+    background-color: #F1F1F1;
+    color: #1C1C1C;
+}
+.bannerImage{
+    background-image:url("assets/img/corporate.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 .main-container {
     margin-top: 15px;
 }
