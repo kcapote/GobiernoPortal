@@ -35,6 +35,12 @@ export class ServiceService {
     return  this.http.get(urlTemp);
   }
 
+  public getObjectAny(url: string): Observable<any> {
+    let urlTemp = `${ url }`;   
+   
+   return  this.http.get(urlTemp);
+ }
+
   public saveObject(url: string, obj: any): Observable<any> {
     
     let headers: HttpHeaders = new  HttpHeaders();
