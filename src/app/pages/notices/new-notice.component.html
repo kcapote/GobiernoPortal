@@ -1,7 +1,7 @@
 
-<app-form-categoria #form title="Crear Categoría"></app-form-categoria>
+<app-form-notice #form title="Crear Noticias"></app-form-notice>
 <div>
-    <button (click)="save(form.getCategory())"
+    <button (click)="save(form.getObject())"
             [disabled] ="!form.isValid()" class="btn btn-secondary">
         Guardar
     </button>
@@ -10,4 +10,3 @@
         Regresar
     </button>
 </div>
-
