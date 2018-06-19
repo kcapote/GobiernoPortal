@@ -7,7 +7,11 @@ export interface Manual {
     description: string;
     category: any;
     linkFile?: string;
-    file?: any;
+    file?: {
+        name: String,
+        mimeType: String,
+        doc: String
+    };
     __v: number;
     version: number;
 

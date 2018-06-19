@@ -19,7 +19,7 @@ export class FormManualComponent implements OnInit, AfterViewInit {
   arc: File;
   fileString: string;
   constructor(private _ps: ServiceService) { }
-
+  binaryString: string= ""; 
 
 
   ngOnInit() {
@@ -35,8 +35,8 @@ export class FormManualComponent implements OnInit, AfterViewInit {
   }
 
   registerFiles(event){
-    this.arc = event.target.files['0']; 
-   
+    this.arc = event.target.files[0]; 
+     
   }
 
   isValid():boolean {
@@ -48,27 +48,19 @@ export class FormManualComponent implements OnInit, AfterViewInit {
     let reader = new FileReader();
     this.manual = this.forma.value; 
     this.manual._id = this.idManual;
-    //console.log(this.arc.type);
-    
-    // reader.readAsText(this.arc);
-    // let t =""
-    // reader.onload = function () {
-    //    this.fileString = reader.result;
-    // }.bind(this)
-
-    // console.log(this.fileString);    
-    // this.manual.file = new Buffer(this.fileString,'utf-8') 
+    reader.readAsDataURL(this.arc);
     reader.onload = function() {
-      let binaryString = reader.result;
-      console.log('binary',binaryString );
+      this.binaryString = reader.result;
+      this.fileString = btoa(this.binaryString);
       
-      this.fileString = btoa(binaryString);
-      //document.getElementById("base64textarea").value = btoa(binaryString);
-    }.bind(this);
+    }.bind(this); 
+    this.manual.file = {
+      name: this.arc.name,
+      mimeType: this.arc.type,
+      doc: this.binaryString      
+    };
+    console.log(this.manual.file);
     
-    console.log(this.fileString);
-    
-
     return this.manual;
   }
 
