@@ -25,17 +25,17 @@
 <table class="table">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Titulo</th>
             <th class="text-center" scope="col">Información</th>
             <th class="text-center" scope="col">Opciones</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let c of collection; let i = index">
-            <th scope="row"> {{ i+1 }} </th>
-            <td>{{ c.title }}</td>
-            <td>{{ c.description }}</td>
+            <td>
+                <P><strong>{{c.title}}</strong></P>
+                <P>{{c.description}}</P>
+                <P class="blockquote-footer">Publicación: {{c.creationDate | date: 'dd/MM/yyyy'}}</P>
+            </td>
             <td class="text-center">
                 <table>
                     <tr>
