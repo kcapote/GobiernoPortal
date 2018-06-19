@@ -4,6 +4,7 @@ import { ServiceService } from '../../services/service.service';
 import { Util } from '../../util/util';
 import { MsgBoxService } from '../../components/msg-box/msg-box.service';
 import 'rxjs/Rx' ;
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-manuales',
@@ -16,18 +17,18 @@ export class ManualesComponent implements OnInit {
   collection: Manual[];
   term: string;
   totalRecords: number; 
-  
+  reg: string;
 
   constructor(private _s: ServiceService,
-              private _msg: MsgBoxService) {
+              private _msg: MsgBoxService,
+              private sanitizer: DomSanitizer
+            ) {
     this.collection = []; 
     _s.getObjects(Util.URL_MANUAL).subscribe(
         res =>{
 
           this.collection = res.manuals;
-          console.log(this.collection);
-          
-          
+
         }
 
     ); 
@@ -53,27 +54,10 @@ export class ManualesComponent implements OnInit {
 
   download(idx: number) {
 
-  //  let file: File = new File(this.collection[idx].file.data ,'holamundo');
-  //  let blob = new Blob([new Uint8Array(this.collection[idx].file.data)]);
-  //  let url= window.URL.createObjectURL(blob);
-   
-   
-  //  window.open(url);
-
-   
-   //var blob = new Blob([data], { type: 'text/csv' });
-
-
-   var blob = new Blob([this.collection[idx].file.data], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-   var file = new File([this.collection[idx].file.data],'hola',{
-     type:  'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-   });
-   
-
-   var url= window.URL.createObjectURL(file);
-   console.log(url);
-   
-   window.open(url);
+    let str: string =  this.collection[idx].file.doc+'';
+      
+    window.location.href = str;
+  
    
   } 
   
@@ -95,4 +79,6 @@ export class ManualesComponent implements OnInit {
    } 
    } 
 
+
+   
 }
