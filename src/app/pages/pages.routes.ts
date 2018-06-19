@@ -11,6 +11,11 @@ import { NewNormaComponent } from './normas/new-norma.component';
 import { EditNormaComponent } from './normas/edit-norma.component';
 import { HomeComponent } from './home/home.component';
 import { CatologoComponent } from './catologo/catologo.component';
+import { NewNoticeComponent } from './notices/new-notice.component';
+import { NoticeComponent } from './notices/notice.component';
+import { EditNoticeComponent } from './notices/edit-notice.component';
+
+
 
 
 const app_pages_routes: Routes = [
@@ -26,7 +31,11 @@ const app_pages_routes: Routes = [
         {path: 'normas', component: NormasComponent},
         {path: 'nuevaNorma', component: NewNormaComponent},
         {path: 'home', component: HomeComponent},
-        {path: 'catalogo', component: CatologoComponent }
+        {path: 'notices', component: NoticeComponent},
+        {path: 'newNotice', component: NewNoticeComponent},
+        {path: 'editNotice/:id', component: EditNoticeComponent},
+        {path: 'catalogo', component: CatologoComponent },
+        {path: '', component: HomeComponent }
         
       ]     
     }

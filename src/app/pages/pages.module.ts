@@ -21,6 +21,10 @@ import { FormNormaComponent } from './normas/form-norma.component';
 import { EditNormaComponent } from './normas/edit-norma.component';
 import { HomeComponent } from './home/home.component';
 import { CatologoComponent } from './catologo/catologo.component';
+import { NoticeComponent } from './notices/notice.component';
+import { NewNoticeComponent } from './notices/new-notice.component';
+import { FormNoticeComponent } from './notices/form-notice.component';
+import { EditNoticeComponent } from './notices/edit-notice.component';
 
 
 @NgModule({
@@ -42,7 +46,11 @@ import { CatologoComponent } from './catologo/catologo.component';
      EditNormaComponent,
      FormNormaComponent,
      HomeComponent,
-     CatologoComponent
+     CatologoComponent,
+     NoticeComponent,
+     NewNoticeComponent,
+     FormNoticeComponent,
+     EditNoticeComponent
 
    ],
    exports: [

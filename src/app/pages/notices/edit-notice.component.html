@@ -1,0 +1,11 @@
+<app-form-notice #form title="Editar Noticias" [idNotice]="idNotice">
+</app-form-notice>
+<div>
+    <button (click)="save(form.getObject())" [disabled]="!form.isValid()" class="btn btn-secondary">
+        Guardar
+    </button>
+
+    <button (click)="back()" class="btn btn-secondary">
+        Regresar
+    </button>
+</div>

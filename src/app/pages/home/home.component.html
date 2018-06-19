@@ -6,58 +6,52 @@
     <footer class="blockquote-footer">Gobierno ITG</footer>
 </div>
 <hr>
-<div class="container">
+<div class="container" style="margin-bottom: 400px;">
     <div class="row">
         <div class="col-6">
             <h3><span class="badge badge-secondary">Ultimas Noticias</span></h3>
             <div id="carouselNotice" class="carousel slide" data-ride="carousel" style="height: 200px;">
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <div class="card" style="background-color: gray; color: #454545;">
-                    <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
-                        <span style="font-weight: bold;">Manuales</span>
-                    </div>
-                    <ul *ngFor="let item of collectionManuals" class="list-group list-group-flush">
-                      <li class="list-group-item">
-                          <div class="container">
-                              <div class="row">
-                                <div class="col-sm">
-                                    {{item.name}}
-                                </div>
-                                <div class="col-sm">
-                                    {{item.description}}
-                                </div>
-                                <div class="col-sm">
-                                    Descargar
-                                </div>
-                              </div>
-                            </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="card" style="background-color: gray; color: #454545;">
-                    <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
-                        <span style="font-weight: bold;">Normas</span>
-                    </div>
-                    <ul *ngFor="let item of collectionRules" class="list-group list-group-flush">
+                    <div class="card" style="background-color: gray; color: #454545;">
+                      <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
+                          <span style="font-weight: bold;">Noticias</span>
+                      </div>
+                      <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <div class="container">
                                 <div class="row">
-                                  <div class="col-sm">
-                                      {{item.name}}
+                                  <div class="col-3">
+                                      {{noticeFirst.title}}
                                   </div>
-                                  <div class="col-sm">
-                                      {{item.description}}
-                                  </div>
-                                  <div class="col-sm">
-                                      Descargar
+                                  <div class="col-9">
+                                      {{noticeFirst.description}}
                                   </div>
                                 </div>
                               </div>
                         </li>
                       </ul>
+                    </div>
+                  </div>
+                <div *ngFor="let item of collectionNotices" class="carousel-item">
+                  <div class="card" style="background-color: gray; color: #454545;">
+                    <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
+                        <span style="font-weight: bold;">Noticias</span>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                          <div class="container">
+                              <div class="row">
+                                <div class="col-3">
+                                    {{item.title}}
+                                </div>
+                                <div class="col-9">
+                                    {{item.description}}
+                                </div>
+                              </div>
+                            </div>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -130,4 +124,3 @@
         </div>
     </div>
 </div>
-<br><br><br><br>
