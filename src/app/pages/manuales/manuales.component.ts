@@ -28,7 +28,8 @@ export class ManualesComponent implements OnInit {
         res =>{
 
           this.collection = res.manuals;
-
+          console.log(this.collection);
+          
         }
 
     ); 
@@ -53,12 +54,20 @@ export class ManualesComponent implements OnInit {
   }
 
   download(idx: number) {
+    let id = this.collection[idx]._id;
 
-    let str: string =  this.collection[idx].file.doc+'';
-      
-    window.location.href = str;
-  
-   
+    let url =`${ Util.URL_MANUAL }/file/${ id }`;
+    
+    this._s.getObjectAny(url).subscribe(
+      res => {
+        let str: string =  res.manual[0].file.doc+'';
+          console.log(str);
+        window.location.href = str;
+      }, err => {
+        this._msg.show(Util.ERROR, "Error al intentar recuperar el documento",Util.ACTION_INFO).subscribe() ;
+      }
+    );
+ 
   } 
   
   search() {

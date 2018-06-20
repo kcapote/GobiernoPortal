@@ -9,116 +9,116 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-          <h3><span class="">Ultimos Documentos</span></h3>
+            <h3><span class="">Ultimos Documentos</span></h3>
             <div id="carouselDocs" class="carousel slide" data-ride="carousel" style="height: 200px;">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="card" style="background-color: gray; color: #454545;">
-                    <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
-                        <span style="font-weight: bold;">Manuales</span>
-                    </div>
-                    <ul *ngFor="let item of collectionManuals" class="list-group list-group-flush">
-                      <li class="list-group-item">
-                          <div class="container">
-                              <div class="row">
-                                <div class="col-sm-9">
-                                    {{item.name}}
-                                </div>
-                                <div class="col-sm-3">
-                                    Descargar
-                                </div>
-                              </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="card" style="background-color: gray; color: #454545;">
+                            <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
+                                <span style="font-weight: bold;">Manuales</span>
                             </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="card" style="background-color: gray; color: #454545;">
-                    <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
-                        <span style="font-weight: bold;">Normas</span>
+                            <ul *ngFor="let item of collectionManuals; let i = index" class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-9">
+                                                {{item.name}}
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <a style="cursor:pointer" (click)="download(i,'M')">Descargar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <ul *ngFor="let item of collectionRules" class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="container">
-                                <div class="row">
-                                  <div class="col-sm">
-                                      {{item.name}}
-                                  </div>
-                                  <div class="col-sm">
-                                      Descargar
-                                  </div>
-                                </div>
-                              </div>
-                        </li>
-                      </ul>
-                  </div>
+                    <div class="carousel-item">
+                        <div class="card" style="background-color: gray; color: #454545;">
+                            <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
+                                <span style="font-weight: bold;">Normas</span>
+                            </div>
+                            <ul *ngFor="let item of collectionRules" class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                {{item.name}}
+                                            </div>
+                                            <div class="col-sm">
+                                                <a style="cursor:pointer" (click)="download(i,'R')">Descargar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <a class="carousel-control-prev" href="#carouselDocs" role="button" data-slide="prev" style="width: 5%;">
-                <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: grey;"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselDocs" role="button" data-slide="next" style="width: 5%;">
-                <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: grey;"></span>
-                <span class="sr-only">Next</span>
-              </a>
+                <a class="carousel-control-prev" href="#carouselDocs" role="button" data-slide="prev" style="width: 5%;">
+                    <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: grey;"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselDocs" role="button" data-slide="next" style="width: 5%;">
+                    <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: grey;"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
         <div class="col-sm-12">
             <br><br><br>
             <h3><span class="">Ultimas Noticias</span></h3>
             <div id="carouselNotice" class="carousel slide" data-ride="carousel" style="height: 200px;">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="card" style="background-color: gray; color: #454545;">
-                      <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
-                          <span style="font-weight: bold;">Noticias</span>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="container">
-                                <div class="row">
-                                  <div class="col-sm">
-                                      <P><strong>{{noticeFirst.title}}</strong></P>
-                                      <P>{{noticeFirst.description}}</P>
-                                      <P class="blockquote-footer">Publicación: {{noticeFirst.creationDate | date: 'dd/MM/yyyy'}}</P>
-                                  </div>
-                                </div>
-                              </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                <div *ngFor="let item of collectionNotices" class="carousel-item">
-                  <div class="card" style="background-color: gray; color: #454545;">
-                    <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
-                        <span style="font-weight: bold;">Noticias</span>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">
-                          <div class="container">
-                              <div class="row">
-                                  <div class="col-sm">
-                                      <P><strong>{{item.title}}</strong></P>
-                                      <P>{{item.description}}</P>
-                                      <P class="blockquote-footer">Publicación: {{item.creationDate | date: 'dd/MM/yyyy'}}</P>
-                                  </div>
-                              </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="card" style="background-color: gray; color: #454545;">
+                            <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
+                                <span style="font-weight: bold;">Noticias</span>
                             </div>
-                      </li>
-                    </ul>
-                  </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <P><strong>{{noticeFirst.title}}</strong></P>
+                                                <P>{{noticeFirst.description}}</P>
+                                                <P class="blockquote-footer">Publicación: {{noticeFirst.creationDate | date: 'dd/MM/yyyy'}}</P>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div *ngFor="let item of collectionNotices" class="carousel-item">
+                        <div class="card" style="background-color: gray; color: #454545;">
+                            <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
+                                <span style="font-weight: bold;">Noticias</span>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <P><strong>{{item.title}}</strong></P>
+                                                <P>{{item.description}}</P>
+                                                <P class="blockquote-footer">Publicación: {{item.creationDate | date: 'dd/MM/yyyy'}}</P>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <a class="carousel-control-prev" href="#carouselNotice" role="button" data-slide="prev" style="width: 5%;">
-                <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: grey;"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselNotice" role="button" data-slide="next" style="width: 5%;">
-                <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: grey;"></span>
-                <span class="sr-only">Next</span>
-              </a>
+                <a class="carousel-control-prev" href="#carouselNotice" role="button" data-slide="prev" style="width: 5%;">
+                    <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: grey;"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselNotice" role="button" data-slide="next" style="width: 5%;">
+                    <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: grey;"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
     </div>

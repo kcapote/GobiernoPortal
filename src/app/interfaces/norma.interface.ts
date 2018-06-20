@@ -7,7 +7,11 @@ export interface Norma {
     description: string;
     category: any;
     linkFile?: string;
-    idFile?: string;
+    file?: {
+        name: String,
+        mimeType: String,
+        doc: String
+    };
     __v: number;
     version: number;
 
