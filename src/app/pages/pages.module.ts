@@ -25,6 +25,7 @@ import { NoticeComponent } from './notices/notice.component';
 import { NewNoticeComponent } from './notices/new-notice.component';
 import { FormNoticeComponent } from './notices/form-notice.component';
 import { EditNoticeComponent } from './notices/edit-notice.component';
+import { PaginationComponent } from '../components/pagination/pagination.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { EditNoticeComponent } from './notices/edit-notice.component';
      NoticeComponent,
      NewNoticeComponent,
      FormNoticeComponent,
-     EditNoticeComponent
+     EditNoticeComponent,
+     PaginationComponent
 
    ],
    exports: [
