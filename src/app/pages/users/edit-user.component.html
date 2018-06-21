@@ -1,0 +1,10 @@
+<app-form-user #form title="Editar Usuario" [idUser]="idUser"></app-form-user>
+  <div>
+      <button (click)="save(form.getObjects())" [disabled]="!form.isValid()" class="btn btn-secondary">
+          Guardar
+      </button>
+  
+      <button (click)="back()" class="btn btn-secondary">
+          Regresar
+      </button>
+  </div>

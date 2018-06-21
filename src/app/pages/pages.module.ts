@@ -26,6 +26,10 @@ import { NewNoticeComponent } from './notices/new-notice.component';
 import { FormNoticeComponent } from './notices/form-notice.component';
 import { EditNoticeComponent } from './notices/edit-notice.component';
 import { PaginationComponent } from '../components/pagination/pagination.component';
+import { UserComponent } from './users/user.component';
+import { NewUserComponent } from './users/new-user.component';
+import { FormUserComponent } from './users/form-user.component';
+import { EditUserComponent } from './users/edit-user.component';
 
 
 @NgModule({
@@ -52,7 +56,11 @@ import { PaginationComponent } from '../components/pagination/pagination.compone
      NewNoticeComponent,
      FormNoticeComponent,
      EditNoticeComponent,
-     PaginationComponent
+     PaginationComponent,
+     UserComponent,
+     NewUserComponent,
+     FormUserComponent,
+     EditUserComponent
 
    ],
    exports: [
