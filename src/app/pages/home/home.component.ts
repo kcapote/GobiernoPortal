@@ -88,13 +88,13 @@ export class HomeComponent implements OnInit {
       url =`${ Util.URL_MANUAL }/file/${ id }`;
     }else{
       id = this.collectionRules[idx]._id;
-      url =`${ Util.URL_MANUAL }/file/${ id }`;
+      url =`${ Util.URL_NORMA }/file/${ id }`;
     }
 
     this._s.getObjectAny(url).subscribe(
       res => {
         let str: string =  res.manual[0].file.doc+'';
-          console.log(str);
+        console.log(str);
         window.location.href = str;
       }, err => {
         this._msg.show(Util.ERROR, "Error al intentar recuperar el documento",Util.ACTION_INFO).subscribe() ;

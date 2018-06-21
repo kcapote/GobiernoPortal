@@ -36,7 +36,7 @@ export class CategoriasComponent implements OnInit {
 
       )
         
-  } //600 600 3600
+  }
 
   ngOnInit() {
     this.prueba ('localhost','hola','como');

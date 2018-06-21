@@ -1,0 +1,49 @@
+<h2>{{ title }}</h2>
+
+<hr>
+
+
+<div class="row ">
+    <div class="col-md-6 space-elements">
+        <div class="input-group">
+
+            <input [(ngModel)]="term" (keyup)="search()" type="text" class="form-control" placeholder="Buscar..." aria-label="Input group example" aria-describedby="btnGroupAddon">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" id="btnGroupAddon">Buscar</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 text-right space-elements">
+        <a [routerLink]="['/newUser']" class="btn btn-success">
+           Nuevo Usuario
+        </a>
+    </div>
+
+</div>
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Role</th>
+            <th class="text-center" scope="col">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of collection; let i = index">
+            <th scope="row"> {{ i+1 }} </th>
+            <td>{{ c.name }}  {{ c.lastName }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.role }}</td>
+            <td class="text-center">
+                <button class="btn btn-secondary"><i class="fas fa-eye"></i></button>
+                <a class="btn btn-secondary" [routerLink]="[ '/editUser', c._id ]"><i class="fas fa-edit"></i></a>
+                <button class="btn btn-secondary" (click)="delete(i)"> <i class="far fa-trash-alt"></i> </button>
+            </td>
+        </tr>
+
+    </tbody> 
+</table>

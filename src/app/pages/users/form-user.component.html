@@ -1,0 +1,70 @@
+<h1>{{ title }}</h1>
+<hr>
+<form [formGroup]="forma">
+
+  <div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Nombre:</label>
+            <input [ngClass]="{'is-invalid':!forma.controls['name'].valid && !forma.get('name').pristine }" type="text" class="form-control" formControlName="name">
+            <div *ngIf="!forma.get('name').errors?.valid && !forma.get('name').pristine" class="invalid-feedback">
+                El nombre es obligatorio
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Apellido:</label>
+            <input [ngClass]="{'is-invalid':!forma.controls['lastName'].valid && !forma.get('lastName').pristine }" type="text" class="form-control" formControlName="lastName">
+            <div *ngIf="!forma.get('lastName').errors?.valid && !forma.get('lastName').pristine" class="invalid-feedback">
+                El Apellido es obligatorio
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Correo:</label>
+            <input [ngClass]="{'is-invalid':!forma.get('email').valid && !forma.get('email').pristine }" type="text" class="form-control" formControlName="email">
+            <div *ngIf=" forma.get('email').errors?.required && !forma.get('email').pristine" class="invalid-feedback">
+                El Correo es obligatorio
+            </div>
+            <div *ngIf=" forma.get('email').errors?.email && !forma.get('email').pristine" class="invalid-feedback">
+                El Correo es no es valido
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-4">
+          <div class="form-group">
+              <label>Role:</label>
+              <select [ngClass]="{'is-invalid':!forma.get('role').valid && !forma.get('role').pristine } " name="" id="" class="form-control" formControlName="role">
+                  <option *ngFor="let item  of  enumType ; let i = index" [value]="item"> {{ item }} </option>        
+              </select>
+            <div *ngIf="!forma.get('role').errors?.valid && !forma.get('role').pristine" class="invalid-feedback">
+                Es un role obligatorio
+            </div>
+          </div>
+      </div>
+      <div class="col-sm-4">
+          <div class="form-group">
+              <label>Contraseña:</label>
+              <input [ngClass]="{'is-invalid':!forma.controls['password'].valid && !forma.get('password').pristine }" type="password" class="form-control" formControlName="password">
+              <div *ngIf="!forma.get('password').errors?.valid && !forma.get('password').pristine" class="invalid-feedback">
+                  La contraseña es obligatoria
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-4">
+          <div class="form-group">
+              <label> Confirmación Contraseña:</label>
+              <input [ngClass]="{'is-invalid':!forma.controls['password2'].valid && !forma.get('password2').pristine }" type="password" class="form-control" formControlName="password2">
+              <div *ngIf="!forma.get('password2').errors?.valid && !forma.get('password2').pristine" class="invalid-feedback">
+                  Las contraseña no son iguales
+              </div>
+          </div>
+      </div>
+  </div>
+  
+
+</form>
