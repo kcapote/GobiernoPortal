@@ -61,8 +61,39 @@ export class ManualesComponent implements OnInit {
     this._s.getObjectAny(url).subscribe(
       res => {
         let str: string =  res.manual[0].file.doc+'';
-          console.log(str);
-        window.location.href = str;
+          str = str.split(',')[1];
+          let binary = atob(str.replace(/\s/g, ''));
+       
+          // get binary length
+          let len = binary.length;
+
+          // create ArrayBuffer with binary length
+          let buffer = new ArrayBuffer(len);
+          // create 8-bit Array
+          let view = new Uint8Array(buffer);
+          // save unicode of binary data into 8-bit Array
+          for (let i = 0; i < len; i++) {
+              view[i] = binary.charCodeAt(i);
+          }          
+          let currentBlob = new File([view],res.manual[0].file.name, {type:  res.manual[0].file.mimeType });
+          
+          let url = URL.createObjectURL(currentBlob);
+
+          console.log(res.manual[0].file.name);                   
+          
+          // window.location.href =   url;
+          // console.log(window.location.pathname);
+              
+          
+          let a = document.createElement("a");
+          document.body.appendChild(a);
+          //a.style = "display: none";
+          a.href = url;
+          a.download =  res.manual[0].file.name;
+          a.click();
+          window.URL.revokeObjectURL(url) 
+          document.removeChild(a);  
+          
       }, err => {
         this._msg.show(Util.ERROR, "Error al intentar recuperar el documento",Util.ACTION_INFO).subscribe() ;
       }
