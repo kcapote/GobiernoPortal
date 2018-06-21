@@ -9,105 +9,25 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h3><span class="">Ultimos Documentos</span></h3>
-            <div id="carouselDocs" class="carousel slide" data-ride="carousel" style="height: 200px;">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="card" style="background-color: gray; color: #454545;">
-                            <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
-                                <span style="font-weight: bold;">Manuales</span>
-                            </div>
-                            <ul *ngFor="let item of collectionManuals; let i = index" class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-sm-9">
-                                                {{item.name}}
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <button class="btn btn-secondary" (click)="download(i,'M')"><i class="fas fa-download"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="card" style="background-color: gray; color: #454545;">
-                            <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
-                                <span style="font-weight: bold;">Normas</span>
-                            </div>
-                            <ul *ngFor="let item of collectionRules" class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-sm">
-                                                {{item.name}}
-                                            </div>
-                                            <div class="col-sm">
-                                                <a style="cursor:pointer" (click)="download(i,'R')">Descargar</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselDocs" role="button" data-slide="prev" style="width: 5%;">
-                    <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: grey;"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselDocs" role="button" data-slide="next" style="width: 5%;">
-                    <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: grey;"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-12">
-            <br><br><br>
             <h3><span class="">Ultimas Noticias</span></h3>
-            <div id="carouselNotice" class="carousel slide" data-ride="carousel" style="height: 200px;">
+            <div id="carouselNotice" class="carousel slide" data-ride="carousel" style="color: white">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <div class="card" style="background-color: gray; color: #454545;">
-                            <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
-                                <span style="font-weight: bold;">Noticias</span>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-sm">
-                                                <P><strong>{{noticeFirst.title}}</strong></P>
-                                                <P>{{noticeFirst.description}}</P>
-                                                <P class="blockquote-footer">Publicación: {{noticeFirst.creationDate | date: 'dd/MM/yyyy'}}</P>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                        <div class="jumbotron backgroundNotice">
+                            <h1 class="display-6">{{noticeFirst.title}}</h1>
+                            <p class="lead">{{noticeFirst.description}}</p>
+                            <hr style="color: white" class="my-4">
+                            <P class="blockquote-footer" style="color: white">Publicación: {{noticeFirst.creationDate | date: 'dd/MM/yyyy'}}</P>
+                            <a class="btn btn-secondary" [routerLink]="['/notices']" role="button">Ver más noticias</a>
                         </div>
                     </div>
                     <div *ngFor="let item of collectionNotices" class="carousel-item">
-                        <div class="card" style="background-color: gray; color: #454545;">
-                            <div class="card-header" style="color: #fff; background-color: #620000;border-color: #32383e;">
-                                <span style="font-weight: bold;">Noticias</span>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-sm">
-                                                <P><strong>{{item.title}}</strong></P>
-                                                <P>{{item.description}}</P>
-                                                <P class="blockquote-footer">Publicación: {{item.creationDate | date: 'dd/MM/yyyy'}}</P>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                        <div class="jumbotron backgroundNotice">
+                            <h1 class="display-6">{{item.title}}</h1>
+                            <p class="lead">{{item.description}}</p>
+                            <hr style="color: white" class="my-4">
+                            <P class="blockquote-footer" style="color: white">Publicación: {{item.creationDate | date: 'dd/MM/yyyy'}}</P>
+                            <a class="btn btn-secondary" [routerLink]="['/notices']" role="button">Ver más noticias</a>
                         </div>
                     </div>
                 </div>
@@ -122,4 +42,30 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3><span class="">Ultimos Documentos</span></h3>
+        </div>
+        <div *ngFor="let item of collectionManuals; let i = index" class="col-md-4" style="margin-top: 5%;">
+            <div class="card" style="width: 18rem;">
+                <img style="display:block; margin:auto; margin-top: 10%;" src="../assets/img/doc.png" width="128px" height="128px" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text">{{item.description}}</p>
+                    <button class="btn btn-secondary" (click)="download(i,'M')"><i class="fas fa-download"></i></button>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let item of collectionRules; let i = index" class="col-md-4" style="margin-top: 5%;">
+            <div class="card" style="width: 18rem;">
+                <img style="display:block; margin:auto; margin-top: 10%;" src="../assets/img/doc.png" width="128px" height="128px" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text">{{item.description}}</p>
+                    <button class="btn btn-secondary" (click)="download(i,'M')"><i class="fas fa-download"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
