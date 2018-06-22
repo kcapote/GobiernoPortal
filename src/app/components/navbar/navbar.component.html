@@ -23,13 +23,34 @@
                 <a class="nav-link" [routerLink]="['/catalogo']">Catalogos</a>
             </li>
             <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link" [routerLink]="['/users']">Usuarios</a>
-                </li>
+                <a class="nav-link" [routerLink]="['/users']">Usuarios</a>
+            </li>
         </ul>
-        <span class="navbar-text">
-      <button class="btn btn-outline-dark">
-        Login
-      </button>
-    </span>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><b>Login</b><span class="caret"></span></a>
+                <ul id="login-dp" class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputEmail2">Correo</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Correo" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputPassword2">Contraseña</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Contraseña" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-block">Aceptar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </nav>
