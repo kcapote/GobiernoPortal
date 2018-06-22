@@ -8,9 +8,9 @@ export interface Manual {
     category: any;
     linkFile?: string;
     file?: {
-        name: String,
-        mimeType: String,
-        doc: String
+        name: string,
+        mimeType: string,
+        doc: string
     };
     __v: number;
     version: number;

@@ -14,23 +14,39 @@ export class Util {
 
 
         //Constantes MsgBox
-        public static SAVE_TITLE = "Guardar";
-        public static DELETE_TITLE = "Eliminar";
-        public static UPDATE_TITLE = "Editar";
-        public static MSJ_SAVE_SUCCESS = "El registro ha sido guardado exitosamente";
-        public static MSJ_UPDATE_SUCCESS = "El registro ha sido actualizado exitosamente";
-        public static MSJ_DELETE_SUCCESS = "El regsitro ha sido eliminado exitosamente";
-        public static MSJ_UPDATE_QUESTION = "¿Está seguro que desea actualizar el registro?";
-        public static MSJ_DELETE_QUESTION = "¿Está seguro que desea eliminar el registro?";
-        public static ERROR = "ERROR";
-        public static OK_RESPONSE = "OK";
-             
-        //Tipos MsgBox
-        public static  ACTION_INFO: string = "INFO";
-        public static  ACTION_QUESTION: string = "QUESTION";  
-        public static  ACTION_SUCCESS: string = "SUCCESS";
-        public static  ACTION_DELETE: string = "DELETEE";
-        public static  ACTION_UPDATE: string = "UPDATE";
+    public static SAVE_TITLE = "Guardar";
+    public static DELETE_TITLE = "Eliminar";
+    public static UPDATE_TITLE = "Editar";
+    public static MSJ_SAVE_SUCCESS = "El registro ha sido guardado exitosamente";
+    public static MSJ_UPDATE_SUCCESS = "El registro ha sido actualizado exitosamente";
+    public static MSJ_DELETE_SUCCESS = "El regsitro ha sido eliminado exitosamente";
+    public static MSJ_UPDATE_QUESTION = "¿Está seguro que desea actualizar el registro?";
+    public static MSJ_DELETE_QUESTION = "¿Está seguro que desea eliminar el registro?";
+    public static ERROR = "ERROR";
+    public static OK_RESPONSE = "OK";
+            
+    //Tipos MsgBox
+    public static  ACTION_INFO: string = "INFO";
+    public static  ACTION_QUESTION: string = "QUESTION";  
+    public static  ACTION_SUCCESS: string = "SUCCESS";
+    public static  ACTION_DELETE: string = "DELETEE";
+    public static  ACTION_UPDATE: string = "UPDATE";
+
+
+    public static createFile(b64: string, name: string, mimeType: string): File{
+        let str = b64.split(',')[1];
+        let binary = atob(str.replace(/\s/g, ''));
+        let len = binary.length;
+        let buffer = new ArrayBuffer(len);
+        let view = new Uint8Array(buffer);
+        for (let i = 0; i < len; i++) {
+            view[i] = binary.charCodeAt(i);
+        }          
+        let file = new File([view],name, {type: mimeType });
+        return file;
+    }
+
+            
     
          
 }

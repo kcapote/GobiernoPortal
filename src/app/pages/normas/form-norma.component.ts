@@ -3,6 +3,7 @@ import { Norma } from '../../interfaces/norma.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Util } from '../../util/util';
 import { ServiceService } from '../../services/service.service';
+import { Categories } from '../../interfaces/categories.interface';
 
 @Component({
   selector: 'app-form-norma',
@@ -40,8 +41,12 @@ export class FormNormaComponent implements OnInit {
 
   getObject():Norma {
     this.norma = this.forma.value; 
-    this.norma._id = this.idNorma;
-
+    //this.norma._id = this.idNorma;
+    if(this.idNorma){
+      this.norma._id = this.idNorma;
+      
+    }
+    this.norma.category = this.norma.category['id'];
     this.norma.file = {
       name: this.arc.name,
       mimeType: this.arc.type,

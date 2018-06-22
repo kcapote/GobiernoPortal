@@ -66,5 +66,14 @@ export class ServiceService {
     
   }
 
+  
+  public getObjectsByFather(url: string, father: string , pagination: number = 0 ,id: string ): Observable<any> {
+    let urlTemp;    
+    //let user = JSON.parse(localStorage.getItem('user'));
+    urlTemp = `${ url }/${ father }/${ id }?pagination=${ pagination }`;
+
+    return this.http.get( urlTemp );                
+  }
+
 
 }

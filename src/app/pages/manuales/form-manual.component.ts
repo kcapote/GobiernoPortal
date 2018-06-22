@@ -56,15 +56,12 @@ export class FormManualComponent implements OnInit, AfterViewInit {
   }
 
   getObject():Manual {
-    //let reader = new FileReader();
     this.manual = this.forma.value; 
-    this.manual._id = this.idManual;
-    // reader.readAsDataURL(this.arc);
-    // reader.onload = function() {
-    //   this.binaryString = reader.result;
-    //   this.fileString = btoa(this.binaryString);
+    //this.manual._id = this.idManual;
+    if(this.idManual){
+      this.manual._id = this.idManual;
       
-    // }.bind(this); 
+    }
     this.manual.file = {
       name: this.arc.name,
       mimeType: this.arc.type,
@@ -103,15 +100,16 @@ export class FormManualComponent implements OnInit, AfterViewInit {
     if(this.idManual){
       this._ps.getObject(Util.URL_MANUAL,this.idManual).subscribe(
          res => {
-          
-          let r = res.manual[0];
-          console.log('el manual es', r);
+          let r: Manual = res.manual[0];
+          let file = Util.createFile(r.file.doc,r.file.name, r.file.mimeType);
+          //console.log('el manual es', r);
+          //console.log(file);
           this.forma.setValue({
             name: r.name,
             description: r.description, 
             category: r.category,
-            linkFile: r.linkFile
-            
+            linkFile: file.name,
+            file: file            
           })
          }
       )  
