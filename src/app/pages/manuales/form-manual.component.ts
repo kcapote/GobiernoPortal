@@ -18,9 +18,10 @@ export class FormManualComponent implements OnInit, AfterViewInit {
   manual: Manual;
   arc: File;
   fileString: string;
-  constructor(private _ps: ServiceService) { }
   binaryString: string= ""; 
+  statusLoading = 0;
 
+  constructor(private _ps: ServiceService) { }
 
   ngOnInit() {
     this.forma = new FormGroup({
@@ -35,8 +36,18 @@ export class FormManualComponent implements OnInit, AfterViewInit {
   }
 
   registerFiles(event){
+    
     this.arc = event.target.files[0]; 
-     
+    let reader = new FileReader();
+    reader.readAsDataURL(this.arc);
+    reader.onload = function() {
+      this.statusLoading = 1;
+      this.binaryString = reader.result;
+      this.fileString = btoa(this.binaryString);
+      this.statusLoading = 2;
+    }.bind(this); 
+    
+    
   }
 
   isValid():boolean {
@@ -45,15 +56,15 @@ export class FormManualComponent implements OnInit, AfterViewInit {
   }
 
   getObject():Manual {
-    let reader = new FileReader();
+    //let reader = new FileReader();
     this.manual = this.forma.value; 
     this.manual._id = this.idManual;
-    reader.readAsDataURL(this.arc);
-    reader.onload = function() {
-      this.binaryString = reader.result;
-      this.fileString = btoa(this.binaryString);
+    // reader.readAsDataURL(this.arc);
+    // reader.onload = function() {
+    //   this.binaryString = reader.result;
+    //   this.fileString = btoa(this.binaryString);
       
-    }.bind(this); 
+    // }.bind(this); 
     this.manual.file = {
       name: this.arc.name,
       mimeType: this.arc.type,

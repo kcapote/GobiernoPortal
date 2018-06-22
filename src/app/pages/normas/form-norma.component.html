@@ -16,8 +16,12 @@
 
     <div class="form-group">
         <label>Archivo:</label>
-        <input class="form-control" #ff type="file" formControlName="linkFile" />
-
+        <div class="input-group">
+            <input class="form-control" #ff type="file" formControlName="linkFile" (change)="registerFiles($event)" />
+            <div class="input-group-prepend" style="padding-left: 20px">
+                <span *ngIf="statusLoading==1"> 'Cargando'</span> <i *ngIf="statusLoading==2" class="fa fa-check" style="color:green"></i>
+            </div>
+        </div>
     </div>
 
     <div class="form-group">

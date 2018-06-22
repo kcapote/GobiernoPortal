@@ -16,7 +16,10 @@ export class FormNormaComponent implements OnInit {
   forma: FormGroup;
   url = Util.URL_CATEGORIAS;
   norma: Norma;
-
+  arc: File;
+  fileString: string;
+  binaryString: string= ""; 
+  statusLoading = 0;
 
   constructor(private _s: ServiceService) { }
 
@@ -38,8 +41,34 @@ export class FormNormaComponent implements OnInit {
   getObject():Norma {
     this.norma = this.forma.value; 
     this.norma._id = this.idNorma;
+
+    this.norma.file = {
+      name: this.arc.name,
+      mimeType: this.arc.type,
+      doc: this.binaryString      
+    };
+    
     return this.norma;
 
+  }
+
+
+
+
+  
+  registerFiles(event){
+    
+    this.arc = event.target.files[0]; 
+    let reader = new FileReader();
+    reader.readAsDataURL(this.arc);
+    reader.onload = function() {
+      this.statusLoading = 1;
+      this.binaryString = reader.result;
+      this.fileString = btoa(this.binaryString);
+      this.statusLoading = 2;
+    }.bind(this); 
+    
+    
   }
 
   ngAfterViewInit() {

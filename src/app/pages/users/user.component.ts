@@ -15,10 +15,9 @@ export class UserComponent implements OnInit {
 
   title: string = "Usuarios";  
   collection: User[] = [];
-  userTotal: number = 0;   
   term: string;
   totalRecords: number;  
-
+  model = Util.URL_USER;
 
   constructor(public _s: ServiceService,
     private _msg: MsgBoxService ) {
@@ -27,7 +26,7 @@ export class UserComponent implements OnInit {
         res => {
           
           this.collection = res.users;
-          this.userTotal = res.totalRecords;
+          this.totalRecords = res.totalRecords;
            
         },
         async (error) => {

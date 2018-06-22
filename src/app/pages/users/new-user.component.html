@@ -1,7 +1,7 @@
 <app-form-user #form title="Crear Usuario"></app-form-user>
 <div>
     <button (click)="save(form.getObjects())"
-            [disabled] ="!form.isValid()" class="btn btn-secondary">
+            [disabled] ="!form.isValid() && form.sta" class="btn btn-secondary">
         Guardar
     </button>
 

@@ -46,5 +46,7 @@
             </td>
         </tr>
 
-    </tbody> 
+    </tbody>
 </table>
+
+<pagination #p [(ngModel)]="collection" [url]="model" [term]="term" collectionName="notices" [totalRecords]="totalRecords"></pagination>

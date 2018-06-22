@@ -15,15 +15,15 @@ export class NormasComponent implements OnInit {
     collection: Norma[];
     term: string;
     totalRecords: number; 
+    model = Util.URL_NORMA;
 
   constructor(private _s: ServiceService,
               private _msg: MsgBoxService) {
     this.collection = []; 
     _s.getObjects(Util.URL_NORMA).subscribe(
         res =>{
-          console.log(res)
-
-          this.collection = res.rules;                  
+           this.collection = res.rules;
+          this.totalRecords = res.totalRecords;                  
         }
 
     ); 
@@ -46,6 +46,50 @@ export class NormasComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  download(idx: number) {
+    let id = this.collection[idx]._id;
+
+    let url =`${ Util.URL_NORMA }/file/${ id }`;
+    
+    this._s.getObjectAny(url).subscribe(
+      res => {
+        console.log(res);
+        
+        let str: string =  res.rule[0].file.doc+'';
+          str = str.split(',')[1];
+          let binary = atob(str.replace(/\s/g, ''));
+       
+          // get binary length
+          let len = binary.length;
+
+          // create ArrayBuffer with binary length
+          let buffer = new ArrayBuffer(len);
+          // create 8-bit Array
+          let view = new Uint8Array(buffer);
+          // save unicode of binary data into 8-bit Array
+          for (let i = 0; i < len; i++) {
+              view[i] = binary.charCodeAt(i);
+          }          
+          let currentBlob = new File([view],res.rule[0].file.name, {type:  res.rule[0].file.mimeType });
+          
+          let url = URL.createObjectURL(currentBlob);
+
+          
+          let a = document.createElement("a");
+          document.body.appendChild(a);
+          a.href = url;
+          a.download =  res.rule[0].file.name;
+          a.click();
+          window.URL.revokeObjectURL(url) 
+          document.removeChild(a);  
+          
+      }, err => {
+        this._msg.show(Util.ERROR, "Error al intentar recuperar el documento",Util.ACTION_INFO).subscribe() ;
+      }
+    );
+ 
+  } 
 
   search() {
     if(this.term.length>0){

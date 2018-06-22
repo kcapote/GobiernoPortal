@@ -18,6 +18,7 @@ export class ManualesComponent implements OnInit {
   term: string;
   totalRecords: number; 
   reg: string;
+  model: string = Util.URL_MANUAL;
 
   constructor(private _s: ServiceService,
               private _msg: MsgBoxService,
@@ -28,7 +29,8 @@ export class ManualesComponent implements OnInit {
         res =>{
 
           this.collection = res.manuals;
-          console.log(this.collection);
+          this.totalRecords = res.totalRecords;
+          
           
         }
 

@@ -13,9 +13,9 @@ import { MsgBoxService } from '../../components/msg-box/msg-box.service';
 export class CategoriasComponent implements OnInit {
   title: string = "Categorías";  
   collection: Categories[] = [];
-  catTotal: number = 0;   
   term: string;
   totalRecords: number;  
+  model: string = Util.URL_CATEGORIAS;
 
   constructor(public _s: ServiceService,
               private _msg: MsgBoxService ) { 
@@ -23,12 +23,12 @@ export class CategoriasComponent implements OnInit {
         res => {
           
           this.collection = res.categories;
-          this.catTotal = res.totalRecords;
-           console.log(this.collection);
+          this.totalRecords = res.totalRecords;
+           console.log(res);
            
         },
-        async (error) => {
-          await this._msg.show(Util.ERROR, "Ha ocurrido un error, intente más tarde por favor",Util.ACTION_INFO)
+         (error) => {
+           this._msg.show(Util.ERROR, "Ha ocurrido un error, intente más tarde por favor",Util.ACTION_INFO)
             .toPromise();
           console.log('el error es',error);
           
@@ -39,7 +39,7 @@ export class CategoriasComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.prueba ('localhost','hola','como');
+    
   }  
 
   search() {
@@ -61,10 +61,6 @@ export class CategoriasComponent implements OnInit {
    } 
   
 
-  prueba (url, ...hla ) {
-    console.log(url, hla.join('/'));
-    
-  }
 
 
   delete(idx: number) {

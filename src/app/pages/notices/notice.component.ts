@@ -13,9 +13,9 @@ export class NoticeComponent implements OnInit {
 
   title: string = "Noticias";  
   collection: Notice[] = [];
-  notTotal: number = 0;   
   term: string;
-  totalRecords: number;  
+  totalRecords: number;
+  model = Util.URL_NOTICE;  
 
   constructor(public _s: ServiceService,
     private _msg: MsgBoxService ) { 
@@ -24,8 +24,8 @@ export class NoticeComponent implements OnInit {
         res => {
           
           this.collection = res.notices;
-          this.notTotal = res.totalRecords;
-           console.log(this.collection);
+          this.totalRecords = res.totalRecords;
+           console.log(res);
            
         },
         async (error) => {

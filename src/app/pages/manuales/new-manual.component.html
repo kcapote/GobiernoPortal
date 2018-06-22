@@ -1,14 +1,10 @@
-
-<app-form-manual #form title="Crear Manual"></app-form-manual>
+<app-form-manual #form title="Crear Manual">
+</app-form-manual>
 <div>
-    <button (click)="save(form.getObject())"
-            [disabled] ="!form.isValid()" class="btn btn-secondary">
+    <button (click)="save(form.getObject())" [disabled]="!form.isValid() || !(form.statusLoading == 2)" class="btn btn-secondary">
         Guardar
     </button>
-
     <button (click)="back()" class="btn btn-secondary">
         Regresar
     </button>
 </div>
-
-

@@ -101,6 +101,7 @@ export class PaginationComponent implements OnInit, ControlValueAccessor {
   }
 
   getMaxpages() {
+   
     let e  = Math.floor(this.totalRecords/10);
     let r = this.totalRecords % 10;
     return  r>0?e+1:e;
