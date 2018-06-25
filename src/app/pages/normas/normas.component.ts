@@ -16,9 +16,21 @@ export class NormasComponent implements OnInit {
     term: string;
     totalRecords: number; 
     model = Util.URL_NORMA;
+    userTemp: any;
 
   constructor(private _s: ServiceService,
               private _msg: MsgBoxService) {
+
+    if(localStorage.getItem('user')){
+      let user = localStorage.getItem('user');
+      this.userTemp = JSON.parse(user);
+    } else{
+      this.userTemp =  {
+        token: "", 
+        role: "",
+      };
+    }      
+
     this.collection = []; 
     _s.getObjects(Util.URL_NORMA).subscribe(
         res =>{

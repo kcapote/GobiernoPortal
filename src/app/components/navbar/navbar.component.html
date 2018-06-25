@@ -7,7 +7,7 @@
   </button>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item " routerLinkActive="active">
+            <li *ngIf="userTemp.role.match('ADMINISTRADOR')" class="nav-item " routerLinkActive="active">
                 <a class="nav-link" [routerLink]="['/categorias']">Categorías</a>
             </li>
             <li class="nav-item " routerLinkActive="active">
@@ -22,14 +22,15 @@
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" [routerLink]="['/catalogo']">Catálogos</a>
             </li>
-            <li class="nav-item" routerLinkActive="active">
+            <li *ngIf="userTemp.role.match('ADMINISTRADOR')" class="nav-item" routerLinkActive="active">
                 <a class="nav-link" [routerLink]="['/users']">Usuarios</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><b>Login</b><span class="caret"></span></a>
-                <ul id="login-dp" class="dropdown-menu dropdown-menu-right">
+                <a *ngIf="userTemp.role === ''" href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><b>Login</b><span class="caret"></span></a>
+                <a (click)="logon();" *ngIf="userTemp.role != ''" href="#" class="dropdown-toggle" style="color: white;"><b>Cerrar Sesión</b><span class="caret"></span></a>
+                <ul *ngIf="userTemp.role === ''" id="login-dp" class="dropdown-menu dropdown-menu-right">
                     <li>
                         <div class="row">
                             <div class="col-md-12">
@@ -43,7 +44,7 @@
                                         <input type="password" [(ngModel)]="pass" name="pass" class="form-control" id="pass" placeholder="Contraseña" required>
                                     </div>
                                     <div class="form-group">
-                                        <button (click)="login()"  class="btn btn-primary btn-block">Aceptar</button>
+                                        <button (click)="login();"  class="btn btn-primary btn-block">Aceptar</button>
                                     </div>
                                 </form>
                             </div>

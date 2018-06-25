@@ -10,12 +10,6 @@ export class ServiceService {
 
   constructor(public http: HttpClient) { }
 
-
-  /*public getObjects(url: string): Observable<any> {
- 
-        return this.http.get(url);
-  } */
-
   public getObjects(url: string, pagination: number = 0 ,term?: string): Observable<any> {
     let urlTemp;
      
@@ -85,7 +79,6 @@ export class ServiceService {
 
   public getObjectsByFather(url: string, father: string , pagination: number = 0 ,id: string ): Observable<any> {
     let urlTemp;    
-    //let user = JSON.parse(localStorage.getItem('user'));
     urlTemp = `${ url }/${ father }/${ id }?pagination=${ pagination }`;
 
     return this.http.get( urlTemp );                

@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 text-right space-elements">
+    <div *ngIf="userTemp.role.match('ADMINISTRADOR')" class="col-md-6 text-right space-elements">
         <a [routerLink]="['/nuevoManual']" class="btn btn-success">
            Nuevo Manual
         </a>
@@ -44,8 +44,8 @@
             <td class="text-center">
 
                 <button class="btn btn-secondary" (click)="download(i)"><i class="fas fa-download"></i></button>
-                <button class="btn btn-secondary" [routerLink]="['/editarManual',c._id]"><i class="fas fa-edit"></i></button>
-                <button (click)="delete(i)" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button>
+                <button *ngIf="userTemp.role.match('ADMINISTRADOR') || userTemp.role.match('CONSULTA') " class="btn btn-secondary" [routerLink]="['/editarManual',c._id]"><i class="fas fa-edit"></i></button>
+                <button *ngIf="userTemp.role.match('ADMINISTRADOR') || userTemp.role.match('CONSULTA') " (click)="delete(i)" class="btn btn-secondary"><i class="far fa-trash-alt"></i></button>
 
             </td>
         </tr>

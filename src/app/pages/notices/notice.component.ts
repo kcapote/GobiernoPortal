@@ -15,10 +15,21 @@ export class NoticeComponent implements OnInit {
   collection: Notice[] = [];
   term: string;
   totalRecords: number;
-  model = Util.URL_NOTICE;  
+  model = Util.URL_NOTICE; 
+  userTemp: any; 
 
   constructor(public _s: ServiceService,
     private _msg: MsgBoxService ) { 
+
+      if(localStorage.getItem('user')){
+        let user = localStorage.getItem('user');
+        this.userTemp = JSON.parse(user);
+      } else{
+        this.userTemp =  {
+          token: "", 
+          role: "",
+        };
+      }      
 
       _s.getObjects(Util.URL_NOTICE).subscribe(
         res => {

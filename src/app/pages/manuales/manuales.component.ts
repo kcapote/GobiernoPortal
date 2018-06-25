@@ -19,11 +19,23 @@ export class ManualesComponent implements OnInit {
   totalRecords: number; 
   reg: string;
   model: string = Util.URL_MANUAL;
+  userTemp: any;
 
   constructor(private _s: ServiceService,
               private _msg: MsgBoxService,
               private sanitizer: DomSanitizer
             ) {
+
+    if(localStorage.getItem('user')){
+      let user = localStorage.getItem('user');
+      this.userTemp = JSON.parse(user);
+    } else{
+      this.userTemp =  {
+        token: "", 
+        role: "",
+      };
+    }    
+
     this.collection = []; 
     _s.getObjects(Util.URL_MANUAL).subscribe(
         res =>{
