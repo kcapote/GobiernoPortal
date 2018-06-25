@@ -11,6 +11,7 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
 import { ServiceService } from './services/service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MsgBoxService } from './components/msg-box/msg-box.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +26,9 @@ import { MsgBoxService } from './components/msg-box/msg-box.service';
     BrowserModule,
     APP_ROUTES,
     PagesModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
   providers: [ServiceService, MsgBoxService],
   bootstrap: [AppComponent]

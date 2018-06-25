@@ -45,13 +45,23 @@ export class ServiceService {
     
     let headers: HttpHeaders = new  HttpHeaders();
     headers.append('Content-Type', 'aplication/json');
+    let urlTemp = '';
+    if(url!=Util.URL_SECURITY+'/login'){
+      let user = JSON.parse(localStorage.getItem('user'));
+      urlTemp = `${url}?token=${ user.token }`;
+    }else{
+      localStorage.setItem('user','');
+      urlTemp = `${url}`;
+    }
     
-    return this.http.post(url, obj, {headers});    
+    return this.http.post(urlTemp, obj, {headers});    
 
   }
 
   public updateObject(url: string, obj: any): Observable<any> {
-    let urlTemp = `${ url }/${ obj['_id'] }`;
+    
+    let user = JSON.parse(localStorage.getItem('user'));
+    let urlTemp = `${ url }/${ obj['_id'] }?token=${ user.token }`;
     let headers: HttpHeaders = new  HttpHeaders();
     headers.append('Content-Type', 'aplication/json');
     
@@ -60,11 +70,17 @@ export class ServiceService {
   }
   
   public deleteObject(url:string, id:string ): Observable<any> {
-
-    let urlTemp = `${ url }/${ id }`;    
+    let user = JSON.parse(localStorage.getItem('user'));
+    let urlTemp = `${ url }/${ id }?token=${ user.token }`;
+    
     return this.http.delete(urlTemp);
     
   }
+
+  public refresToken(res){
+    localStorage.setItem('user',JSON.stringify(res.user));
+  }
+
 
 
 }

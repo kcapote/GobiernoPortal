@@ -9,6 +9,7 @@ export class Util {
     public static  URL_NORMA  = `${ Util.URL_SERVER }/rule`;
     public static  URL_NOTICE  = `${ Util.URL_SERVER }/notice`;
     public static  URL_USER  = `${ Util.URL_SERVER }/user`;
+    public static  URL_SECURITY  = `${ Util.URL_SERVER }/security`;
 
 
 
