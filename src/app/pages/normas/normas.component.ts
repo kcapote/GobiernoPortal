@@ -57,32 +57,25 @@ export class NormasComponent implements OnInit {
         console.log(res);
         
         let str: string =  res.rule[0].file.doc+'';
-          str = str.split(',')[1];
-          let binary = atob(str.replace(/\s/g, ''));
-       
-          // get binary length
-          let len = binary.length;
+        str = str.split(',')[1];
+        let binary = atob(str.replace(/\s/g, ''));
+        let len = binary.length;
+        let buffer = new ArrayBuffer(len);
+        let view = new Uint8Array(buffer);
+        for (let i = 0; i < len; i++) {
+            view[i] = binary.charCodeAt(i);
+        }          
+        let currentBlob = new File([view],res.rule[0].file.name, {type:  res.rule[0].file.mimeType });
+        let url = URL.createObjectURL(currentBlob);
 
-          // create ArrayBuffer with binary length
-          let buffer = new ArrayBuffer(len);
-          // create 8-bit Array
-          let view = new Uint8Array(buffer);
-          // save unicode of binary data into 8-bit Array
-          for (let i = 0; i < len; i++) {
-              view[i] = binary.charCodeAt(i);
-          }          
-          let currentBlob = new File([view],res.rule[0].file.name, {type:  res.rule[0].file.mimeType });
-          
-          let url = URL.createObjectURL(currentBlob);
-
-          
-          let a = document.createElement("a");
-          document.body.appendChild(a);
-          a.href = url;
-          a.download =  res.rule[0].file.name;
-          a.click();
-          window.URL.revokeObjectURL(url) 
-          document.removeChild(a);  
+        
+        let a = document.createElement("a");
+        document.body.appendChild(a);
+        a.href = url;
+        a.download =  res.rule[0].file.name;
+        a.click();
+        window.URL.revokeObjectURL(url) 
+        document.removeChild(a);  
           
       }, err => {
         this._msg.show(Util.ERROR, "Error al intentar recuperar el documento",Util.ACTION_INFO).subscribe() ;
