@@ -1,7 +1,7 @@
 <h1>
     {{ title }}</h1>
 <hr>
-<form [formGroup]="forma">
+<form [formGroup]="forma" enctype="multipart/form-data">
 
     <div class="form-group">
         <label>Nombre:</label>
@@ -17,7 +17,8 @@
     <div class="form-group">
         <label>Archivo:</label>
         <div class="input-group">
-            <input class="form-control" #ff type="file" formControlName="linkFile" (change)="registerFiles($event)" />
+            <input id="linkFile" class="inputfile" #ff type="file" formControlName="linkFile" (change)="registerFiles($event)" />
+            <label for="linkFile" class=" alert alert-dark " style="cursor: pointer;"> {{ arc?arc.name:'Seleccione un archivo' }} </label>
             <div class="input-group-prepend" style="padding-left: 20px">
                 <span *ngIf="statusLoading==1"> 'Cargando'</span> <i *ngIf="statusLoading==2" class="fa fa-check" style="color:green"></i>
             </div>
@@ -29,6 +30,5 @@
         <textarea class="form-control" rows="3" formControlName="description"></textarea>
     </div>
 
-    <!-- {{forma.value | json}} -->
 
 </form>

@@ -53,6 +53,7 @@ export class ComboComponent implements OnInit, ControlValueAccessor, AfterViewIn
   @Output() loading = true;
 
 
+
   itemId: any;
   nested: number;
   
@@ -60,6 +61,8 @@ export class ComboComponent implements OnInit, ControlValueAccessor, AfterViewIn
   
 
   constructor(private _ps: ServiceService) {
+   
+    
      if(this.itemId) {
     
        this.propagateChange(this.itemId);
@@ -69,7 +72,7 @@ export class ComboComponent implements OnInit, ControlValueAccessor, AfterViewIn
   }
 
   ngOnInit() {
-     
+ 
       this.load();
 
   }
@@ -79,6 +82,7 @@ export class ComboComponent implements OnInit, ControlValueAccessor, AfterViewIn
     let c =  this.labelField.split(this.separator);
     this.nested = (c[0].split('.')).length;
     this.loadElements(this.labelField.split(",").map( e => e.trim() ) );
+
   }
   
   loadElements(arr:string[]){
@@ -117,32 +121,21 @@ export class ComboComponent implements OnInit, ControlValueAccessor, AfterViewIn
       
 
     }else if(this.urlDef && (!this.nameFather && !this.idF) ){
-      console.log(this.urlDef); 
+      //console.log(this.urlDef); 
       this._ps.getObjects(this.urlDef,0).subscribe(
         res => {
             //this._ps.refresToken(res);
             //console.log(res);
             
             this.collection = res[this.nameCollection];
-            if(this.urlDef==='http://localhost:3001/project'){
-              let p = {
-                _id: 0,
-                name: "Todos",
-                adress: '',
-                builder: '',
-                supervisor1: '',
-                supervisor2: '',
-                status: 0,
-                startDate: '',
-                endDate: ''
-              };
-              this.collection.push(p);
-            }
+
             this.collection.map( e => {
-               e['output'] =  this.concatenateFields(e,arr);               
+               e['output'] =  this.concatenateFields(e,arr); 
+               
             });
             this.propagateChange(this.itemId);
             this.loading = false;
+            
             this.loadSel();
           },
           err => {
@@ -182,7 +175,7 @@ export class ComboComponent implements OnInit, ControlValueAccessor, AfterViewIn
     
     if(this.itemId){
       this.itemId = this.collection.find( c => c['_id']== this.itemId);
-      console.log('en el if', this.itemId);
+      //console.log('en el if', this.itemId);
       
     }
 
@@ -237,8 +230,11 @@ export class ComboComponent implements OnInit, ControlValueAccessor, AfterViewIn
 
 
   writeValue(obj: any): void {
+    //console.log('en el write ', obj);
+    
     this.itemId = obj; 
     this.propagateChange(this.itemId); 
+    this.loadSel();
     //throw new Error("Method not implemented.");
   }
 

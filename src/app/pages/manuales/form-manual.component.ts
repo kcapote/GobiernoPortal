@@ -24,7 +24,6 @@ export class FormManualComponent implements OnInit, AfterViewInit {
 
   constructor(private _ps: ServiceService) {
 
-
     if(localStorage.getItem('user') && localStorage.getItem('user').length > 4){
       let user = localStorage.getItem('user');
       this.userTemp = JSON.parse(user);
@@ -39,16 +38,17 @@ export class FormManualComponent implements OnInit, AfterViewInit {
    }
 
   ngOnInit() {
+
     this.forma = new FormGroup({
       'name': new FormControl('', Validators.required),
       'description': new FormControl('', Validators.required),
       'category': new FormControl(''),
       'linkFile': new FormControl('')
 
-    }
-  );
+      }
+    );
+   }
 
-  }
 
   registerFiles(event){
     
@@ -89,14 +89,6 @@ export class FormManualComponent implements OnInit, AfterViewInit {
 
 
 
-  //  readSingleFile(evt) {
-  //   //Retrieve the first (and only!) File from the FileList object
-  //   var myFile = evt.target.files[0];
-  //   var reader = new FileReader();
-  //   reader.readAsText(myFile);
-  //   reader.onload=function(){alert(reader.result)}
-  //   }
-
   getBase64(file):FileReader {
     var reader = new FileReader();
     reader.readAsDataURL(file);
@@ -110,27 +102,36 @@ export class FormManualComponent implements OnInit, AfterViewInit {
    }
 
   ngAfterViewInit() {
-    console.log('el idmanual enafterview es',this.idManual );
+    //console.log('el idmanual enafterview es',this.idManual );
     
     if(this.idManual){
-      this._ps.getObject(Util.URL_MANUAL,this.idManual).subscribe(
-         res => {
-          let r: Manual = res.manual[0];
-          let file = Util.createFile(r.file.doc,r.file.name, r.file.mimeType);
-          //console.log('el manual es', r);
-          //console.log(file);
-          this.forma.setValue({
-            name: r.name,
-            description: r.description, 
-            category: r.category,
-            linkFile: file.name,
-            file: file            
-          })
-         }
-      )  
-    }
+        this._ps.getObject(Util.URL_MANUAL,this.idManual).subscribe(
+           res => {
+            let r: Manual = res.manual[0];
+            let file = Util.createFile(r.file.doc,r.file.name, r.file.mimeType);
+            //console.log('el manual es', r);
+            //console.log(file);
+            this.forma.setValue({
+              name: r.name,
+              description: r.description, 
+              category: r.category['_id'],
+              linkFile: ''
+                      
+            });
+            this.manual = r;
+           
+            if(r.file){
+                this.arc = Util.createFile(r.file.doc,
+                                           r.file.name,
+                                           r.file.mimeType) ;
+            }
+           }
+        )  
+      }
+  
 
   }
+
 
 
 }
