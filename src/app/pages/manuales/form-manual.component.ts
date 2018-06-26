@@ -82,6 +82,9 @@ export class FormManualComponent implements OnInit, AfterViewInit {
       mimeType: this.arc.type,
       doc: this.binaryString      
     };
+    this.manual['user'] =  JSON.parse(localStorage.getItem('user'))._id ;
+    console.log(this.manual['user']);
+    
     console.log(this.manual.file);
     
     return this.manual;

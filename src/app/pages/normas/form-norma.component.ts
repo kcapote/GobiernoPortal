@@ -61,13 +61,13 @@ export class FormNormaComponent implements OnInit {
       this.norma._id = this.idNorma;
       
     }
-    this.norma.category = this.norma.category['id'];
+    //this.norma.category = this.norma.category['id'];
     this.norma.file = {
       name: this.arc.name,
       mimeType: this.arc.type,
       doc: this.binaryString      
     };
-    
+    this.norma['user'] =  JSON.parse(localStorage.getItem('user'))._id ;
     return this.norma;
 
   }
