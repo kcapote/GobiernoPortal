@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Norma } from '../../interfaces/norma.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Util } from '../../util/util';
@@ -21,6 +21,8 @@ export class FormNormaComponent implements OnInit {
   fileString: string;
   binaryString: string= ""; 
   statusLoading = 0;
+  
+  @ViewChild('ff') fileBox: ElementRef  ;
 
   constructor(private _s: ServiceService) { }
 
@@ -78,7 +80,7 @@ export class FormNormaComponent implements OnInit {
 
   ngAfterViewInit() {
     console.log('el idmanual enafterview es',this.idNorma );
-    
+    console.log('el ref', this.fileBox );
     if(this.idNorma){
       this._s.getObject(Util.URL_NORMA,this.idNorma).subscribe(
          res => {
@@ -87,10 +89,19 @@ export class FormNormaComponent implements OnInit {
           this.forma.setValue({
             name: r.name,
             description: r.description, 
-            category: r.category,
-            linkFile: r.linkFile
-            
-          })
+            category: r.category['_id'],
+            linkFile: ''
+          });
+          this.norma = r.file; 
+          if(r.file){
+              this.arc = Util.createFile(r.file.doc,
+                                         r.file.name,
+                                         r.file.mimeType) ;
+          }
+                                     
+          console.log(r);
+          
+          this.fileBox.nativeElement.title =  "fdf";
          }
       )  
     }
@@ -98,5 +109,8 @@ export class FormNormaComponent implements OnInit {
   }
 
 
+  viewLog(){
+    console.log('el ref', this.fileBox );
+  }
 
 }
