@@ -19,11 +19,21 @@ export class HomeComponent implements OnInit {
   collectionRules: Norma[] = [];
   collectionNotices: Notice[] = [];
   noticeFirst: any = {};
+  userTemp: any;
 
   constructor(public _s: ServiceService,
     private _msg: MsgBoxService ) { 
 
 
+      if(localStorage.getItem('user') && localStorage.getItem('user').length > 4){
+        let user = localStorage.getItem('user');
+        this.userTemp = JSON.parse(user);
+      } else{
+        this.userTemp =  {
+          token: "", 
+          role: "",
+        };
+      }    
 
       _s.getObjectAny(Util.URL_MANUAL+"/last").subscribe(
         res => {
@@ -34,9 +44,7 @@ export class HomeComponent implements OnInit {
         },
         async (error) => {
           await this._msg.show(Util.ERROR, "Ha ocurrido un error, intente más tarde por favor",Util.ACTION_INFO)
-            .toPromise();
-          console.log('el error es',error);
-          
+            .toPromise();          
         } 
 
       )
@@ -44,10 +52,7 @@ export class HomeComponent implements OnInit {
 
       _s.getObjectAny(Util.URL_NORMA+"/last").subscribe(
         res => {
-          
           this.collectionRules = res.rules;
-          console.log(this.collectionRules);
-           
         },
         async (error) => {
           await this._msg.show(Util.ERROR, "Ha ocurrido un error, intente más tarde por favor",Util.ACTION_INFO)

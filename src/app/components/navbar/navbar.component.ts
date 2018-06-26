@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
               private _msg: MsgBoxService,
               private location: Location) { 
 
-    if(localStorage.getItem('user')){
+    if(localStorage.getItem('user') && localStorage.getItem('user').length > 4){
       let user = localStorage.getItem('user');
       this.userTemp = JSON.parse(user);
     } else{
@@ -29,8 +29,8 @@ export class NavbarComponent implements OnInit {
         token: "", 
         role: "",
       };
-    }           
-
+    }     
+    
   }
 
   ngOnInit() {

@@ -21,15 +21,15 @@ export class NormasComponent implements OnInit {
   constructor(private _s: ServiceService,
               private _msg: MsgBoxService) {
 
-    if(localStorage.getItem('user')){
-      let user = localStorage.getItem('user');
-      this.userTemp = JSON.parse(user);
-    } else{
-      this.userTemp =  {
-        token: "", 
-        role: "",
-      };
-    }      
+                if(localStorage.getItem('user') && localStorage.getItem('user').length > 4){
+                  let user = localStorage.getItem('user');
+                  this.userTemp = JSON.parse(user);
+                } else{
+                  this.userTemp =  {
+                    token: "", 
+                    role: "",
+                  };
+                }      
 
     this.collection = []; 
     _s.getObjects(Util.URL_NORMA).subscribe(
@@ -48,6 +48,7 @@ export class NormasComponent implements OnInit {
           if(res.response == Util.OK_RESPONSE) {
             this._s.deleteObject(Util.URL_NORMA ,this.collection[idx]._id).subscribe(
               res => {
+                this._s.refresToken(res);
                 this.collection.splice(idx,1); 
               }
             )             

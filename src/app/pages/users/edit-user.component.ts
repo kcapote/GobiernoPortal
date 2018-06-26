@@ -15,12 +15,23 @@ export class EditUserComponent implements OnInit {
 
 
   idUser: string;
+  userTemp: any; 
 
   constructor(private location: Location,
               private _s: ServiceService, 
               private _msg: MsgBoxService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {
+
+                if(localStorage.getItem('user') && localStorage.getItem('user').length > 4){
+                  let user = localStorage.getItem('user');
+                  this.userTemp = JSON.parse(user);
+                } else{
+                  this.userTemp =  {
+                    token: "", 
+                    role: "",
+                  };
+                }
 
               activatedRoute.params.subscribe(
                   async p => {
@@ -48,7 +59,8 @@ save(user:User) {
         res => {
           if(res.response = Util.OK_RESPONSE){
             this._s.updateObject(Util.URL_USER, user).subscribe(
-              res => {
+              resp => {
+                this._s.refresToken(resp);
                 this._msg.show('',Util.MSJ_UPDATE_SUCCESS,Util.ACTION_SUCCESS).subscribe(
                   () => {
                     this.router.navigate(['/users']);

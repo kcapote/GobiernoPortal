@@ -16,9 +16,21 @@ export class CategoriasComponent implements OnInit {
   term: string;
   totalRecords: number;  
   model: string = Util.URL_CATEGORIAS;
+  userTemp: any; 
 
   constructor(public _s: ServiceService,
               private _msg: MsgBoxService ) { 
+
+      if(localStorage.getItem('user') && localStorage.getItem('user').length > 4){
+        let user = localStorage.getItem('user');
+        this.userTemp = JSON.parse(user);
+      } else{
+        this.userTemp =  {
+          token: "", 
+          role: "",
+        };
+      }    
+
       _s.getObjects(Util.URL_CATEGORIAS).subscribe(
         res => {
           
@@ -68,7 +80,8 @@ export class CategoriasComponent implements OnInit {
            res => {
             if(res.response == Util.OK_RESPONSE) {
               this._s.deleteObject(Util.URL_CATEGORIAS,this.collection[idx]._id).subscribe(
-                res => {
+                resp => {
+                  this._s.refresToken(resp);
                   this.collection.splice(idx,1); 
                 }
               )             

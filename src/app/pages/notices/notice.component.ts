@@ -21,23 +21,24 @@ export class NoticeComponent implements OnInit {
   constructor(public _s: ServiceService,
     private _msg: MsgBoxService ) { 
 
-      if(localStorage.getItem('user')){
+      if(localStorage.getItem('user') && localStorage.getItem('user').length > 4){
         let user = localStorage.getItem('user');
+        console.log(user);
+        console.log(String(user));
+        console.log(JSON.parse(user));
+        
         this.userTemp = JSON.parse(user);
       } else{
         this.userTemp =  {
           token: "", 
           role: "",
         };
-      }      
+      }     
 
       _s.getObjects(Util.URL_NOTICE).subscribe(
-        res => {
-          
+        res => {  
           this.collection = res.notices;
-          this.totalRecords = res.totalRecords;
-           console.log(res);
-           
+          this.totalRecords = res.totalRecords;           
         },
         async (error) => {
           await this._msg.show(Util.ERROR, "Ha ocurrido un error, intente más tarde por favor",Util.ACTION_INFO)
@@ -78,6 +79,7 @@ export class NoticeComponent implements OnInit {
         if(res.response == Util.OK_RESPONSE) {
           this._s.deleteObject(Util.URL_NOTICE,this.collection[idx]._id).subscribe(
             res => {
+              this._s.refresToken(res);
               this.collection.splice(idx,1); 
             }
           )             

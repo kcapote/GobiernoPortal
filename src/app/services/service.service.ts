@@ -11,6 +11,8 @@ export class ServiceService {
   constructor(public http: HttpClient) { }
 
   public getObjects(url: string, pagination: number = 0 ,term?: string): Observable<any> {
+    
+    localStorage.setItem('user',localStorage.getItem('user'));
     let urlTemp;
      
     if(term) {
@@ -24,12 +26,14 @@ export class ServiceService {
 
 
   public getObject(url: string, id: string): Observable<any> {
+    localStorage.setItem('user',localStorage.getItem('user'));
      let urlTemp = `${ url }/${ id }`;   
     
     return  this.http.get(urlTemp);
   }
 
   public getObjectAny(url: string): Observable<any> {
+    localStorage.setItem('user',localStorage.getItem('user'));
     let urlTemp = `${ url }`;   
    
    return  this.http.get(urlTemp);

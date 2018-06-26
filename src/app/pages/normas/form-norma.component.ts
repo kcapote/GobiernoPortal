@@ -21,8 +21,22 @@ export class FormNormaComponent implements OnInit {
   fileString: string;
   binaryString: string= ""; 
   statusLoading = 0;
+  userTemp: any; 
 
-  constructor(private _s: ServiceService) { }
+  constructor(private _s: ServiceService) {
+    
+    if(localStorage.getItem('user') && localStorage.getItem('user').length > 4){
+      let user = localStorage.getItem('user');
+      this.userTemp = JSON.parse(user);
+    } else{
+      this.userTemp =  {
+        token: "", 
+        role: "",
+      };
+    }
+
+
+   }
 
   ngOnInit() {
     this.forma = new FormGroup({

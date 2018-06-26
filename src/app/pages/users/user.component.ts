@@ -18,13 +18,23 @@ export class UserComponent implements OnInit {
   term: string;
   totalRecords: number;  
   model = Util.URL_USER;
-
+  userTemp: any; 
+  
   constructor(public _s: ServiceService,
     private _msg: MsgBoxService ) {
 
+      if(localStorage.getItem('user') && localStorage.getItem('user').length > 4){
+        let user = localStorage.getItem('user');
+        this.userTemp = JSON.parse(user);
+      } else{
+        this.userTemp =  {
+          token: "", 
+          role: "",
+        };
+      }    
+
       _s.getObjects(Util.URL_USER).subscribe(
         res => {
-          
           this.collection = res.users;
           this.totalRecords = res.totalRecords;
            
@@ -68,7 +78,8 @@ export class UserComponent implements OnInit {
          res => {
           if(res.response == Util.OK_RESPONSE) {
             this._s.deleteObject(Util.URL_USER,this.collection[idx]._id).subscribe(
-              res => {
+              resp => {
+                this._s.refresToken(resp);
                 this.collection.splice(idx,1); 
               }
             )             

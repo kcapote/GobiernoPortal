@@ -18,6 +18,7 @@ export class FormUserComponent implements OnInit {
 
   user: User; 
   forma: FormGroup;
+  userTemp: any; 
 
   enumType = Object.keys(ValidTypesUser).map(
     r => {
@@ -26,6 +27,16 @@ export class FormUserComponent implements OnInit {
   ) ;
 
   constructor(private _s: ServiceService) { 
+
+    if(localStorage.getItem('user') && localStorage.getItem('user').length > 4){
+      let user = localStorage.getItem('user');
+      this.userTemp = JSON.parse(user);
+    } else{
+      this.userTemp =  {
+        token: "", 
+        role: "",
+      };
+    }  
     
     this.forma = new FormGroup({
       'name': new FormControl('',Validators.required),
@@ -89,9 +100,7 @@ export class FormUserComponent implements OnInit {
 
   getObjects():User{
     this.user = this.forma.value;
-    this.user._id = this.idUser;
-    console.log(this.user);
-    
+    this.user._id = this.idUser;    
     return this.user;
 
   }
