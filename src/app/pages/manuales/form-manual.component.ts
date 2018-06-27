@@ -127,6 +127,7 @@ export class FormManualComponent implements OnInit, AfterViewInit {
                 this.arc = Util.createFile(r.file.doc,
                                            r.file.name,
                                            r.file.mimeType) ;
+                this.binaryString = r.file.doc;  
             }
            }
         )  

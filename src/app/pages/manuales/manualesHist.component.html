@@ -1,0 +1,44 @@
+<h2>{{ title }}</h2>
+
+<hr>
+
+
+<div class="row ">
+    <div class="col-md-6 space-elements">
+        <div class="input-group">
+            <input [(ngModel)]="term" (keyup)="search()" type="text" class="form-control" placeholder="Buscar..." aria-label="Input group example" aria-describedby="btnGroupAddon">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" id="btnGroupAddon">Buscar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Categoría</th>
+            <th scope="col">Versión</th>
+
+            <th class="text-center" scope="col">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of collection; let i = index">
+            <th scope="row"> {{ i+1 + p.numberPage }} </th>
+            <td>{{ c.name }}</td>
+            <td>{{c.category['name'] }} </td>
+            <td>{{ c.version }}</td>
+            <td class="text-center">
+                <button class="btn btn-secondary" (click)="download(i)"><i class="fas fa-download"></i></button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<pagination #p [(ngModel)]="collection" [url]="model" [term]="term" collectionName="manuals" [totalRecords]="totalRecords"></pagination>

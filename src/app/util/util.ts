@@ -6,7 +6,9 @@ export class Util {
 
     public static  URL_CATEGORIAS  = `${ Util.URL_SERVER }/category`;
     public static  URL_MANUAL  = `${ Util.URL_SERVER }/manual`;
+    public static  URL_MANUAL_HIST  = `${ Util.URL_SERVER }/manualHist`;
     public static  URL_NORMA  = `${ Util.URL_SERVER }/rule`;
+    public static  URL_NORMA_HIST  = `${ Util.URL_SERVER }/ruleHist`;
     public static  URL_NOTICE  = `${ Util.URL_SERVER }/notice`;
     public static  URL_USER  = `${ Util.URL_SERVER }/user`;
     public static  URL_SECURITY  = `${ Util.URL_SERVER }/security`;
@@ -33,6 +35,7 @@ export class Util {
     public static  ACTION_DELETE: string = "DELETEE";
     public static  ACTION_UPDATE: string = "UPDATE";
 
+    private binaryString: string;
 
     public static createFile(b64: string, name: string, mimeType: string): File{
         let str = b64.split(',')[1];
@@ -49,6 +52,17 @@ export class Util {
 
             
     
+    getBinaryString (arc: File){    
+        
+        let reader = new FileReader();
+        reader.readAsDataURL(arc);
+        reader.onload = function() {
+          this.binaryString = reader.result;
+        }.bind(this); 
+        
+        return this.binaryString;
+        
+      }
          
 }
 

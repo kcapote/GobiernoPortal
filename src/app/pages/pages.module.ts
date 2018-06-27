@@ -7,6 +7,7 @@ import { FormCategoriaComponent } from './categorias/form-categoria.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManualesComponent } from './manuales/manuales.component';
+import { ManualesHistComponent } from './manuales/manualesHist.component';
 import { FormManualComponent } from './manuales/form-manual.component';
 import { NewManualComponent } from './manuales/new-manual.component';
 import { ComboCategoriasComponent } from '../components/combo-categorias/combo-categorias.component';
@@ -14,6 +15,7 @@ import { EditCategoryComponent } from './categorias/edit-category.component';
 import { EditManualComponent } from './manuales/edit-manual.component';
 import { MsgBoxComponent } from '../components/msg-box/msg-box.component';
 import { NormasComponent } from './normas/normas.component';
+import { NormasHistComponent } from './normas/normasHist.component';
 import { MsgBoxService } from '../components/msg-box/msg-box.service';
 import { ComboComponent } from '../components/combo/combo.component';
 import { NewNormaComponent } from './normas/new-norma.component';
@@ -60,7 +62,9 @@ import { EditUserComponent } from './users/edit-user.component';
      UserComponent,
      NewUserComponent,
      FormUserComponent,
-     EditUserComponent
+     EditUserComponent,
+     ManualesHistComponent,
+     NormasHistComponent
 
    ],
    exports: [

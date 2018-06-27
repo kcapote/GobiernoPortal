@@ -105,16 +105,18 @@ export class FormNormaComponent implements OnInit {
             category: r.category['_id'],
             linkFile: ''
           });
-          this.norma = r.file; 
+          console.log('el file', this.norma);
+          
+
           if(r.file){
               this.arc = Util.createFile(r.file.doc,
                                          r.file.name,
                                          r.file.mimeType) ;
+              this.binaryString = r.file.doc;            
           }
                                      
           console.log(r);
-          
-          this.fileBox.nativeElement.title =  "fdf";
+
          }
       )  
     }
