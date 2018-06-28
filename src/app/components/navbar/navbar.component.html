@@ -23,10 +23,10 @@
                 <a class="nav-link" [routerLink]="['/catalogo']">Catálogos</a>
             </li>
             <li *ngIf="userTemp.role.match('ADMINISTRADOR')" class="nav-item" routerLinkActive="active">
-                <a class="nav-link" [routerLink]="['/manualesHist']">Histórico Manuales</a>
+                <a class="nav-link" [routerLink]="['/manualesHist']">Hist. Manuales</a>
             </li>
             <li *ngIf="userTemp.role.match('ADMINISTRADOR')" class="nav-item " routerLinkActive="active">
-                <a class="nav-link" [routerLink]="['/normasHist']">Histórico Documentos y Normas</a>
+                <a class="nav-link" [routerLink]="['/normasHist']">Hist. Documentos y Normas</a>
             </li>
             <li *ngIf="userTemp.role.match('ADMINISTRADOR')" class="nav-item" routerLinkActive="active">
                 <a class="nav-link" [routerLink]="['/users']">Usuarios</a>
