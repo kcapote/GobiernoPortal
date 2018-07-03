@@ -3,6 +3,7 @@ import { Norma } from '../../interfaces/norma.interface';
 import { Util } from '../../util/util';
 import { ServiceService } from '../../services/service.service';
 import { MsgBoxService } from '../../components/msg-box/msg-box.service';
+import { Stats } from '../../interfaces/stats.interface';
 
 @Component({
   selector: 'app-normas',
@@ -13,6 +14,7 @@ export class NormasComponent implements OnInit {
   
     title:string = "Documentos y Normas";
     collection: Norma[];
+    collectionStats: Stats[];
     term: string;
     totalRecords: number; 
     model = Util.URL_NORMA;
@@ -29,7 +31,19 @@ export class NormasComponent implements OnInit {
                     token: "", 
                     role: "",
                   };
-                }      
+                }    
+                
+    _s.getObjects(Util.URL_STATS).subscribe(
+      res => {
+        let page = 'NORMAS'
+        this.collectionStats = res.stats;
+        this.collectionStats.forEach(element => {
+          if(element.page === page){
+            _s.updateObject(Util.URL_STATS,element).subscribe(res => {})
+          }
+        });
+      }
+    )
 
     this.collection = []; 
     _s.getObjects(Util.URL_NORMA).subscribe(

@@ -32,6 +32,7 @@ import { UserComponent } from './users/user.component';
 import { NewUserComponent } from './users/new-user.component';
 import { FormUserComponent } from './users/form-user.component';
 import { EditUserComponent } from './users/edit-user.component';
+import { StatsComponent } from './stats/stats.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { EditUserComponent } from './users/edit-user.component';
      FormUserComponent,
      EditUserComponent,
      ManualesHistComponent,
-     NormasHistComponent
+     NormasHistComponent,
+     StatsComponent
 
    ],
    exports: [

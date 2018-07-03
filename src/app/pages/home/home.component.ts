@@ -5,6 +5,7 @@ import { MsgBoxService } from '../../components/msg-box/msg-box.service';
 import { Manual } from '../../interfaces/manual.interface';
 import { Norma } from '../../interfaces/norma.interface';
 import { Notice } from '../../interfaces/notice.interface';
+import { Stats } from '../../interfaces/stats.interface';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
   collectionManuals: Manual[] = [];
   collectionRules: Norma[] = [];
   collectionNotices: Notice[] = [];
+  collectionStats: Stats[] = [];
   noticeFirst: any = {};
   userTemp: any;
 
@@ -35,12 +37,21 @@ export class HomeComponent implements OnInit {
         };
       }    
 
+      _s.getObjects(Util.URL_STATS).subscribe(
+        res => {
+          let page = 'HOME'
+          this.collectionStats = res.stats;
+          this.collectionStats.forEach(element => {
+            if(element.page === page){
+              _s.updateObject(Util.URL_STATS,element).subscribe(res => {})
+            }
+          });
+        }
+      )
+
       _s.getObjectAny(Util.URL_MANUAL+"/last").subscribe(
         res => {
-          
           this.collectionManuals = res.manuals;
-          console.log(this.collectionManuals);
-           
         },
         async (error) => {
           await this._msg.show(Util.ERROR, "Ha ocurrido un error, intente más tarde por favor",Util.ACTION_INFO)
@@ -70,10 +81,7 @@ export class HomeComponent implements OnInit {
           this.collectionNotices.shift();
         },
         async (error) => {
-          await this._msg.show(Util.ERROR, "Ha ocurrido un error, intente más tarde por favor",Util.ACTION_INFO)
-            .toPromise();
-          console.log('el error es',error);
-          
+          await this._msg.show(Util.ERROR, "Ha ocurrido un error, intente más tarde por favor",Util.ACTION_INFO).toPromise();
         } 
 
       )
@@ -83,31 +91,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  // download(idx: number, type: string) {
-  //   let id = "";
-  //   let url = "";
-
-  //   if(type ==="M" ){
-  //     id = this.collectionManuals[idx]._id;
-  //     url =`${ Util.URL_MANUAL }/file/${ id }`;
-  //   }else{
-  //     id = this.collectionRules[idx]._id;
-  //     url =`${ Util.URL_MANUAL }/file/${ id }`;
-  //   }
-
-  //   this._s.getObjectAny(url).subscribe(
-  //     res => {
-  //       let str: string =  res.manual[0].file.doc+'';
-  //         console.log(str);
-  //       window.location.href = str;
-  //     }, err => {
-  //       this._msg.show(Util.ERROR, "Error al intentar recuperar el documento",Util.ACTION_INFO).subscribe() ;
-  //     }
-  //   );
- 
-  // } 
-
 
   download(idx: number, type: string) {
 
@@ -122,10 +105,6 @@ export class HomeComponent implements OnInit {
       url =`${ Util.URL_NORMA }/file/${ id }`;
     }
 
-    // let id = this.collection[idx]._id;
-
-    // let url =`${ Util.URL_MANUAL }/file/${ id }`;
-    
     this._s.getObjectAny(url).subscribe(
       res => {
         let str: string =  res.manual[0].file.doc+'';
@@ -146,12 +125,6 @@ export class HomeComponent implements OnInit {
           let currentBlob = new File([view],res.manual[0].file.name, {type:  res.manual[0].file.mimeType });
           
           let url = URL.createObjectURL(currentBlob);
-
-          console.log(res.manual[0].file.name);                   
-          
-          // window.location.href =   url;
-          // console.log(window.location.pathname);
-              
           
           let a = document.createElement("a");
           document.body.appendChild(a);
