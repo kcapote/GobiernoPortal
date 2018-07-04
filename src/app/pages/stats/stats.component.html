@@ -1,0 +1,22 @@
+<h2>{{ title }}</h2>
+
+<hr>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Pagina</th>
+            <th class="text-center" scope="col">Visitas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of collection; let i = index">
+            <th scope="row"> {{ i+1 + p.numberPage }} </th>
+            <td>{{ c.page }}</td>
+            <td class="text-center">{{ c.visit }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<pagination #p [(ngModel)]="collection" [url]="model" [term]="term" collectionName="categories" [totalRecords]="totalRecords"></pagination>

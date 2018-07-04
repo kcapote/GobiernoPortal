@@ -22,11 +22,16 @@
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" [routerLink]="['/catalogo']">Catálogos</a>
             </li>
-            <li *ngIf="userTemp.role.match('ADMINISTRADOR')" class="nav-item" routerLinkActive="active">
-                <a class="nav-link" [routerLink]="['/manualesHist']">Hist. Manuales</a>
-            </li>
-            <li *ngIf="userTemp.role.match('ADMINISTRADOR')" class="nav-item " routerLinkActive="active">
-                <a class="nav-link" [routerLink]="['/normasHist']">Hist. Documentos y Normas</a>
+            <li *ngIf="userTemp.role.match('ADMINISTRADOR')" class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Históricos y Estadísticas
+                </a>
+                <div class="dropdown-menu" style="background-color: #343a40!important;" aria-labelledby="navbarDropdown">
+                  <a class="nav-link" [routerLink]="['/manualesHist']">Manuales</a>
+                  <a class="nav-link" [routerLink]="['/normasHist']">Documentos y Normas</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="nav-link" [routerLink]="['/stats']">Estadísticas</a>
+                </div>
             </li>
             <li *ngIf="userTemp.role.match('ADMINISTRADOR')" class="nav-item" routerLinkActive="active">
                 <a class="nav-link" [routerLink]="['/users']">Usuarios</a>

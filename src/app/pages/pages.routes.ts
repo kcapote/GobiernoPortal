@@ -19,7 +19,7 @@ import { EditNoticeComponent } from './notices/edit-notice.component';
 import { UserComponent } from './users/user.component';
 import { NewUserComponent } from './users/new-user.component';
 import { EditUserComponent } from './users/edit-user.component';
-
+import { StatsComponent } from './stats/stats.component';
 
 
 
@@ -44,6 +44,7 @@ const app_pages_routes: Routes = [
         {path: 'newNotice', component: NewNoticeComponent},
         {path: 'editNotice/:id', component: EditNoticeComponent},
         {path: 'catalogo', component: CatologoComponent },
+        {path: 'stats', component: StatsComponent },
         {path: 'users', component: UserComponent },
         {path: 'newUser', component: NewUserComponent },
         {path: 'editUser/:id', component: EditUserComponent },

@@ -3,6 +3,7 @@ import { Util } from '../../util/util';
 import { MsgBoxService } from '../../components/msg-box/msg-box.service';
 import { ServiceService } from '../../services/service.service';
 import { Notice } from '../../interfaces/notice.interface';
+import { Stats } from '../../interfaces/stats.interface';
 
 @Component({
   selector: 'app-notice.component',
@@ -13,6 +14,7 @@ export class NoticeComponent implements OnInit {
 
   title: string = "Noticias";  
   collection: Notice[] = [];
+  collectionStats: Stats[];
   term: string;
   totalRecords: number;
   model = Util.URL_NOTICE; 
@@ -23,10 +25,6 @@ export class NoticeComponent implements OnInit {
 
       if(localStorage.getItem('user') && localStorage.getItem('user').length > 4){
         let user = localStorage.getItem('user');
-        console.log(user);
-        console.log(String(user));
-        console.log(JSON.parse(user));
-        
         this.userTemp = JSON.parse(user);
       } else{
         this.userTemp =  {
@@ -34,6 +32,18 @@ export class NoticeComponent implements OnInit {
           role: "",
         };
       }     
+        
+      _s.getObjects(Util.URL_STATS).subscribe(
+        res => {
+          let page = 'NOTICIAS'
+          this.collectionStats = res.stats;
+          this.collectionStats.forEach(element => {
+            if(element.page === page){
+              _s.updateObject(Util.URL_STATS,element).subscribe(res => {})
+            }
+          });
+        }
+      ) 
 
       _s.getObjects(Util.URL_NOTICE).subscribe(
         res => {  

@@ -5,6 +5,7 @@ import { Util } from '../../util/util';
 import { MsgBoxService } from '../../components/msg-box/msg-box.service';
 import 'rxjs/Rx' ;
 import { DomSanitizer } from '@angular/platform-browser';
+import { Stats } from '../../interfaces/stats.interface';
 
 @Component({
   selector: 'app-manuales',
@@ -15,6 +16,7 @@ export class ManualesComponent implements OnInit {
 
   title: string = "Manuales"; 
   collection: Manual[];
+  collectionStats: Stats[];
   term: string;
   totalRecords: number; 
   reg: string;
@@ -38,6 +40,18 @@ export class ManualesComponent implements OnInit {
                   role: "",
                 };
               }   
+
+    _s.getObjects(Util.URL_STATS).subscribe(
+      res => {
+        let page = 'MANUALES'
+        this.collectionStats = res.stats;
+        this.collectionStats.forEach(element => {
+          if(element.page === page){
+            _s.updateObject(Util.URL_STATS,element).subscribe(res => {})
+          }
+        });
+      }
+    )
 
     this.collection = []; 
     _s.getObjects(Util.URL_MANUAL).subscribe(
