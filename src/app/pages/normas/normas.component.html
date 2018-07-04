@@ -4,16 +4,17 @@
 
 
 <div class="row ">
-    <div class="col-md-6 space-elements">
+    <div class="col-md-8 space-elements">
         <div class="input-group">
 
             <input [(ngModel)]="term" (keyup)="search()" type="text" class="form-control" placeholder="Buscar..." aria-label="Input group example" aria-describedby="btnGroupAddon">
             <div class="input-group-prepend">
+                <combo name="idCategory" [url]="modelCategory" labelField="name" nameCollection="categories" [(ngModel)]="idCategory"></combo>
                 <button class="btn btn-outline-secondary" id="btnGroupAddon">Buscar</button>
             </div>
         </div>
     </div>
-    <div *ngIf="userTemp.role.match('ADMINISTRADOR')" class="col-md-6 text-right space-elements">
+    <div *ngIf="userTemp.role.match('ADMINISTRADOR')" class="col-md-4 text-right space-elements">
         <a [routerLink]="['/nuevaNorma']" class="btn btn-success">
            Nuevo Documento
         </a>

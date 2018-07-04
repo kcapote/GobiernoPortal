@@ -17,6 +17,8 @@ export class NormasHistComponent implements OnInit {
     totalRecords: number; 
     model = Util.URL_NORMA_HIST;
     userTemp: any;
+    modelCategory: string =  Util.URL_CATEGORIAS;
+    idCategory: string;
 
   constructor(private _s: ServiceService,
               private _msg: MsgBoxService) {

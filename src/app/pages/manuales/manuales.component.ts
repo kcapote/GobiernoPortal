@@ -19,7 +19,10 @@ export class ManualesComponent implements OnInit {
   totalRecords: number; 
   reg: string;
   model: string = Util.URL_MANUAL;
+  modelCategory: string =  Util.URL_CATEGORIAS;
   userTemp: any;
+  idCategory: string;
+
 
   constructor(private _s: ServiceService,
               private _msg: MsgBoxService,
@@ -117,8 +120,17 @@ export class ManualesComponent implements OnInit {
   } 
   
   search() {
-    if(this.term.length>0){
-       this._s.getObjects(Util.URL_MANUAL,0 ,this.term ).subscribe(
+  
+    if(this.term || this.idCategory){
+
+      let url ="";
+      if(this.idCategory){
+        url = `${Util.URL_MANUAL}/search/${this.term}/?categoriaId=${this.idCategory['_id']}&pagination=0`;
+      }else{
+        url = `${Util.URL_MANUAL}/search/${this.term}/?pagination=0`;
+      }  
+      
+      this._s.getObjectAny(url).subscribe(
            res => {
                this.collection = res.manuals;
                this.totalRecords = res.totalRecords;

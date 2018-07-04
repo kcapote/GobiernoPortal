@@ -20,7 +20,10 @@ export class ManualesHistComponent implements OnInit {
   reg: string;
   model: string = Util.URL_MANUAL_HIST;
   userTemp: any;
+  modelCategory: string =  Util.URL_CATEGORIAS;
+  idCategory: string;
 
+  
   constructor(private _s: ServiceService,
               private _msg: MsgBoxService,
               private sanitizer: DomSanitizer
