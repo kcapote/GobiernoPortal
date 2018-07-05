@@ -50,9 +50,12 @@ export class PaginationComponent implements OnInit, ControlValueAccessor {
     }else{
       this.existNext = true;  
     }
-   
 
-    if(this.term > 0){  
+     
+
+    if(this.term){
+     
+        
     this._ps.getObjects(this.url, this.numberPage,this.term ).subscribe(
         res => {
             this.collection = res[this.collectionName];

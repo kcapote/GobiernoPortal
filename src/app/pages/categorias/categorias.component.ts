@@ -55,6 +55,7 @@ export class CategoriasComponent implements OnInit {
   }  
 
   search() {
+    
     if(this.term.length>0){
        this._s.getObjects(Util.URL_CATEGORIAS,0 ,this.term ).subscribe(
            res => {
@@ -69,7 +70,9 @@ export class CategoriasComponent implements OnInit {
               this.totalRecords = res.totalRecords;
            }
        );
-   } 
+   }
+  
+    
    } 
   
 
