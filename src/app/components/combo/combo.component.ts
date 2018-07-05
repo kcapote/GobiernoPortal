@@ -24,7 +24,7 @@ export class ComboComponent implements OnInit, ControlValueAccessor, AfterViewIn
   @Input() filterId;
   @Input() separator =" - ";
   @Input() freeQuery: boolean = false;
-
+  @Input() all: boolean = false;
   idF: string ; 
   @Input('idFather') 
   set idFather(val: string) {
@@ -98,6 +98,7 @@ export class ComboComponent implements OnInit, ControlValueAccessor, AfterViewIn
         )
     }  
 
+  
     if(this.freeQuery){
 
       this._ps.getObjectAny(this.urlDef).subscribe(
@@ -113,6 +114,13 @@ export class ComboComponent implements OnInit, ControlValueAccessor, AfterViewIn
             this.propagateChange(this.itemId);
             this.loading = false;
             this.loadSel();
+            if(this.all){
+              let obj = {
+               
+                name: "Todos"
+              }
+              this.collection.unshift(obj);
+            }
           },
           err => {
             this.collection = [];
@@ -137,6 +145,14 @@ export class ComboComponent implements OnInit, ControlValueAccessor, AfterViewIn
             this.loading = false;
             
             this.loadSel();
+            if(this.all){
+              let obj = {
+               
+                name: "Todos"
+              }
+              this.collection.unshift(obj);
+            }
+
           },
           err => {
             this.collection = [];
@@ -157,6 +173,15 @@ export class ComboComponent implements OnInit, ControlValueAccessor, AfterViewIn
           this.propagateChange(this.itemId);
           this.loading = false;
           this.loadSel();
+
+          if(this.all){
+            let obj = {
+             
+              name: "Todos"
+            
+            }
+            this.collection.unshift(obj);
+          }
         },
         err => {
           console.log('en el error ', this.nameCollection, ' ', this.idFather);

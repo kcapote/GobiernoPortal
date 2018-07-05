@@ -9,8 +9,8 @@
 
             <input [(ngModel)]="term" (keyup)="search()" type="text" class="form-control" placeholder="Buscar..." aria-label="Input group example" aria-describedby="btnGroupAddon">
             <div class="input-group-prepend">
-                <combo name="idCategory" [url]="modelCategory" labelField="name" nameCollection="categories" [(ngModel)]="idCategory"></combo>
-                <button class="btn btn-outline-secondary" id="btnGroupAddon">Buscar</button>
+                <combo all="true" name="idCategory" [url]="modelCategory" labelField="name" nameCollection="categories" [(ngModel)]="idCategory"></combo>
+                <button (click)="search()" class="btn btn-outline-secondary" id="btnGroupAddon">Buscar</button>
             </div>
         </div>
     </div>

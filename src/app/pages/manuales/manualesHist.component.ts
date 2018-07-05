@@ -119,24 +119,66 @@ export class ManualesHistComponent implements OnInit {
  
   } 
   
+  // search() {
+  //   if(this.term.length>0){
+  //      this._s.getObjects(Util.URL_MANUAL_HIST,0 ,this.term ).subscribe(
+  //          res => {
+  //              this.collection = res.manuals;
+  //              this.totalRecords = res.totalRecords;
+  //          }   
+  //      )       
+  //  }else{
+  //      this._s.getObjects(Util.URL_MANUAL_HIST).subscribe(
+  //          res => {
+  //             this.collection = res.manuals;
+  //             this.totalRecords = res.totalRecords;
+  //          }
+  //      );
+  //  } 
+  //  } 
+
+
   search() {
-    if(this.term.length>0){
-       this._s.getObjects(Util.URL_MANUAL_HIST,0 ,this.term ).subscribe(
+
+    if(!this.term && (!this.idCategory || this.idCategory['name'] == "Todos" )  ){
+      this._s.getObjects(Util.URL_MANUAL_HIST).subscribe(
+        res => {
+           this.collection = res.manuals;
+           this.totalRecords = res.totalRecords;
+        }
+      );      
+
+    }else if(this.term || this.idCategory ){
+      console.log('cat ', this.idCategory);
+      
+      let termTemp; // "" (!this.term)? this.term:'undefined';
+      if(this.term){
+        termTemp = this.term;
+      }else{
+        termTemp = 'undefined';
+      }
+            
+      let url ="";
+      if(this.idCategory && this.idCategory['name'] !== 'Todos' ){
+        url = `${Util.URL_MANUAL_HIST}/search/${termTemp}/?categoriaId=${this.idCategory['_id']}&pagination=0`;
+      }else{
+        url = `${Util.URL_MANUAL_HIST}/search/${termTemp}/?pagination=0`;
+      }  
+      
+      this._s.getObjectAny(url).subscribe(
            res => {
                this.collection = res.manuals;
                this.totalRecords = res.totalRecords;
            }   
        )       
-   }else{
+    }else{
        this._s.getObjects(Util.URL_MANUAL_HIST).subscribe(
            res => {
               this.collection = res.manuals;
               this.totalRecords = res.totalRecords;
            }
        );
-   } 
-   } 
-
-
+    } 
+   }
    
 }

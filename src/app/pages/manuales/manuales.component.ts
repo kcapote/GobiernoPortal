@@ -133,15 +133,32 @@ export class ManualesComponent implements OnInit {
  
   } 
   
-  search() {
-  
-    if(this.term || this.idCategory){
 
-      let url ="";
-      if(this.idCategory){
-        url = `${Util.URL_MANUAL}/search/${this.term}/?categoriaId=${this.idCategory['_id']}&pagination=0`;
+  search() {
+
+    if(!this.term && (!this.idCategory || this.idCategory['name'] == "Todos" )  ){
+      this._s.getObjects(Util.URL_MANUAL).subscribe(
+        res => {
+           this.collection = res.manuals;
+           this.totalRecords = res.totalRecords;
+        }
+      );      
+
+    }else if(this.term || this.idCategory ){
+      console.log('cat ', this.idCategory);
+      
+      let termTemp; // "" (!this.term)? this.term:'undefined';
+      if(this.term){
+        termTemp = this.term;
       }else{
-        url = `${Util.URL_MANUAL}/search/${this.term}/?pagination=0`;
+        termTemp = 'undefined';
+      }
+            
+      let url ="";
+      if(this.idCategory && this.idCategory['name'] !== 'Todos' ){
+        url = `${Util.URL_MANUAL}/search/${termTemp}/?categoriaId=${this.idCategory['_id']}&pagination=0`;
+      }else{
+        url = `${Util.URL_MANUAL}/search/${termTemp}/?pagination=0`;
       }  
       
       this._s.getObjectAny(url).subscribe(
@@ -150,16 +167,14 @@ export class ManualesComponent implements OnInit {
                this.totalRecords = res.totalRecords;
            }   
        )       
-   }else{
+    }else{
        this._s.getObjects(Util.URL_MANUAL).subscribe(
            res => {
               this.collection = res.manuals;
               this.totalRecords = res.totalRecords;
            }
        );
-   } 
-   } 
-
-
+    } 
+   }
    
 }
