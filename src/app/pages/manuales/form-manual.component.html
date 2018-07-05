@@ -17,8 +17,11 @@
     <div class="form-group">
         <label>Archivo:</label>
         <div class="input-group">
-            <input id="linkFile" class="inputfile" #ff type="file" formControlName="linkFile" (change)="registerFiles($event)" />
+            <input id="linkFile" class="inputfile is-valid" #ff type="file" formControlName="linkFile" (change)="registerFiles($event)" />
             <label for="linkFile" class="alert alert-dark file" style="cursor: pointer;"> {{ arc?arc.name:'Seleccione un archivo' }} </label>
+            <div *ngIf="arc && arc?.size>15728640" class="text-danger" style="margin-left: 20px">
+                El archivo no puede pesar más de 15 megas.
+            </div>
             <div class="input-group-prepend" style="padding-left: 20px">
                 <span *ngIf="statusLoading==1"> 'Cargando'</span> <i *ngIf="statusLoading==2" class="fa fa-check" style="color:green"></i>
             </div>

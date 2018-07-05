@@ -35,7 +35,7 @@
             <th scope="row"> {{ i+1 + p.numberPage }} </th>
             <td>{{ c.name }}</td>
             <td class="text-center">
-                <button class="btn btn-secondary"><i class="fas fa-eye"></i></button>
+                <!-- <button class="btn btn-secondary"><i class="fas fa-eye"></i></button> -->
                 <a class="btn btn-secondary" [routerLink]="[ '/editCategoria', c._id ]"><i class="fas fa-edit"></i></a>
                 <button class="btn btn-secondary" (click)="delete(i)"> <i class="far fa-trash-alt"></i> </button>
             </td>

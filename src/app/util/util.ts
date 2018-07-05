@@ -1,4 +1,4 @@
-
+import { FormControl } from "@angular/forms";
 
 export class Util {
     //public static URL_SERVER = 'http://180.124.152.20:3000';
@@ -64,6 +64,20 @@ export class Util {
         return this.binaryString;
         
       }
+
+
+      public static sizeFileValid( control:FormControl ):{[s:string]:boolean} {
+       
+        let size: number = control.value;
+
+        if(!(size > 15728640) ){
+             return {
+                     rutValid: false
+                    }
+         }
+
+        return null;
+    }      
          
 }
 
