@@ -80,7 +80,7 @@ export class PaginationComponent implements OnInit, ControlValueAccessor {
   previous (){    
     this.numberPage -= 10;
     
-    if(this.term > 0){  
+    if(this.term){  
     this._ps.getObjects(this.url, this.numberPage,this.term ).subscribe(
         res => {
             this.totalRecords = res.totalRecords;
