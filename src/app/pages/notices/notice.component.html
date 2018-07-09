@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="userTemp.role.match('ADMINISTRADOR')" class="col-md-6 text-right space-elements">
+    <div *ngIf="userTemp.role.match('ADMINISTRADOR') || userTemp.role.match('CARGA') " class="col-md-6 text-right space-elements">
         <a [routerLink]="['/newNotice']" class="btn btn-success">
            Nueva Noticia
         </a>
@@ -36,7 +36,7 @@
                 <P>{{c.description}}</P>
                 <P class="blockquote-footer">Publicación: {{c.creationDate | date: 'dd/MM/yyyy'}}</P>
             </td>
-            <td *ngIf="userTemp.role.match('ADMINISTRADOR') || userTemp.role.match('CONSULTA') " class="text-center">
+            <td *ngIf="userTemp.role.match('ADMINISTRADOR') || userTemp.role.match('CARGA') " class="text-center">
                 <table>
                     <tr>
                         <td><a class="btn btn-secondary" [routerLink]="[ '/editNotice', c._id ]"><i class="fas fa-edit"></i></a></td>
