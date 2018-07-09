@@ -3,7 +3,7 @@
 <hr>
 
 
-<div class="row ">
+<div class="row animated fade fadeIn">
     <div class="col-md-6 space-elements">
         <div class="input-group">
 
@@ -22,7 +22,7 @@
 </div>
 
 
-<table class="table">
+<table class="table animated fade fadeIn">
     <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
@@ -35,6 +35,7 @@
             <th scope="row"> {{ i+1 + p.numberPage }} </th>
             <td>{{ c.name }}</td>
             <td *ngIf="userTemp.role.match('ADMINISTRADOR') || userTemp.role.match('CARGA') " class="text-center">
+            <td class="text-center">
                 <a class="btn btn-secondary" [routerLink]="[ '/editCategoria', c._id ]"><i class="fas fa-edit"></i></a>
                 <button class="btn btn-secondary" (click)="delete(i)"> <i class="far fa-trash-alt"></i> </button>
             </td>

@@ -66,7 +66,7 @@ export class FormManualComponent implements OnInit, AfterViewInit {
   }
 
   isValid():boolean {
-    return this.forma.valid;
+    return this.forma.valid && (this.arc?this.arc.size < 15728640:false);
 
   }
 

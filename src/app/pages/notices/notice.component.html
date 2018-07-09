@@ -1,4 +1,4 @@
-<h2>{{ title }}</h2>
+<h2 class="animated fade fadeIn">{{ title }}</h2>
 
 <hr>
 
@@ -30,7 +30,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let c of collection; let i = index">
+        <tr class="animated fade fadeIn" *ngFor="let c of collection; let i = index">
             <td>
                 <P><strong>{{c.title}}</strong></P>
                 <P>{{c.description}}</P>
